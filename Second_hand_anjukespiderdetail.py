@@ -353,6 +353,7 @@ if __name__ == '__main__':
     for i in range(0, 3235):
         url_and_id = next(urlid)
         # print(url_and_id)
+        print()
         print(url_and_id)
 
         url_id = url_and_id[0]
