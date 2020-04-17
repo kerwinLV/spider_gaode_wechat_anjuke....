@@ -249,8 +249,8 @@ if res.status_code==200:
               "Years,housetype,construction_area," \
               "House_orientation,Floor,Supporting_elevator," \
               "Only_housing,Housing_unit_price,Reference_down_payment," \
-              "Year_of_the_room,First_hand_housing,city,Housing_type,Degree_of_decoration,Property_rights_years,Property_nature) values ('%s'," \
-              "'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','上海市','%s','%s','%s','%s')"
+              "Year_of_the_room,First_hand_housing,city,Housing_type,Degree_of_decoration,Property_rights_years,Property_nature,href_id) values ('%s'," \
+              "'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','上海市','%s','%s','%s','%s','%s')"
         cur.execute(SQL % (xinxidict["Belonging_District"],
                            xinxidict["location"],
                            xinxidict["Area"],
@@ -269,7 +269,7 @@ if res.status_code==200:
                            xinxidict["Housing_type"],
                            xinxidict["Degree_of_decoration"],
                            xinxidict["Property_rights_years"],
-                           xinxidict["Property_nature"]
+                           xinxidict["Property_nature"],str(13)
                            ))
         conn.commit()
         print("我存入了")
@@ -309,24 +309,24 @@ if res.status_code==200:
         cur.close()
         conn.close()
 
-    import sys
+    # import sys
 
 
-    class Logger(object):
-        def __init__(self, fileN="Default.log"):
-            self.terminal = sys.stdout
-            self.log = open(fileN, "a")
-
-        def write(self, message):
-            self.terminal.write(message)
-            self.log.write(message)
-
-        def flush(self):
-            pass
-
-
-    sys.stdout = Logger(r"C:\kerwin\workspace\requestpro\log.txt")  # 保存到D盘
-    print('asfasfsaf')
+    # class Logger(object):
+    #     def __init__(self, fileN="Default.log"):
+    #         self.terminal = sys.stdout
+    #         self.log = open(fileN, "a")
+    #
+    #     def write(self, message):
+    #         self.terminal.write(message)
+    #         self.log.write(message)
+    #
+    #     def flush(self):
+    #         pass
+    #
+    #
+    # sys.stdout = Logger(r"C:\kerwin\workspace\requestpro\log.txt")  # 保存到D盘
+    # print('asfasfsaf')
 # a = {'Belonging_District': <class 'lxml.etree._ElementUnicodeResult'>,
 # 'location': <class 'str'>,
 # 'Area': <class 'lxml.etree._ElementUnicodeResult'>,

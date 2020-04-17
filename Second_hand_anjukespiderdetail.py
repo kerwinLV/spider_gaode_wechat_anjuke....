@@ -34,9 +34,9 @@ pool = PooledDB(pymysql, 10,
 # cursor = conn.cursor()
 
 
-def requests_result(url, header):
+def requests_result(url, header,proxy):
     print("____requests_result_____")
-    res = requests.get(url, headers=header)
+    res = requests.get(url, headers=header,proxies=proxy)
     # print(res.status_code)
     return res
 
@@ -278,7 +278,8 @@ def rexpath(res_result):
 
 def sql_save(res_xinxi,url_id):
     print("_________sql_save__________________")
-
+    print(type(url_id))
+    print(url_id)
     try:
         conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
         cur = conn.cursor()
@@ -288,8 +289,9 @@ def sql_save(res_xinxi,url_id):
                   "Years,housetype,construction_area," \
                   "House_orientation,Floor,Supporting_elevator," \
                   "Only_housing,Housing_unit_price,Reference_down_payment," \
-                  "Year_of_the_room,First_hand_housing,city,Housing_type,Degree_of_decoration,Property_rights_years,Property_nature) values ('%s'," \
-                  "'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','上海市','%s','%s','%s','%s')"
+                  "Year_of_the_room,First_hand_housing,city,Housing_type,Degree_of_decoration,Property_rights_years,Property_nature,href_id) values ('%s'," \
+                  "'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','上海市','%s','%s','%s','%s','%d')"
+            print("执行SQL")
             cur.execute(SQL % (res_xinxi["Belonging_District"],
                                res_xinxi["location"],
                                res_xinxi["Area"],
@@ -308,8 +310,10 @@ def sql_save(res_xinxi,url_id):
                                res_xinxi["Housing_type"],
                                res_xinxi["Degree_of_decoration"],
                                res_xinxi["Property_rights_years"],
-                               res_xinxi["Property_nature"]
+                               res_xinxi["Property_nature"],
+                               url_id
                                ))
+            print("提交前")
             conn.commit()
             print("已存入成功")
             SQL = 'UPDATE ershou_pudonghouse_href SET isspider=1 where id ="%d"'
@@ -345,12 +349,14 @@ def select_sql_url():
 
 
 if __name__ == '__main__':
+    from tool_get_ip_pool import get_ip
     # url = "https://shanghai.anjuke.com/sale/pudong/p{}/#filtersort"
     # sys.stdout = Logger(r"C:\kerwin\workspace\requestpro\log.txt")
     header = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"}
     urlid = select_sql_url()
     for i in range(0, 3235):
+        proxy = get_ip()
         url_and_id = next(urlid)
         # print(url_and_id)
         print()
@@ -360,10 +366,10 @@ if __name__ == '__main__':
         url1 = url_and_id[1]
         # url1 = url.format(i)
         # print(url1)
-        res = requests_result(url1, header)
+        res = requests_result(url1, header,random.choice(proxy))
         # print(res)
         res_xinxi = rexpath(res)
         print(res_xinxi)
         sql_save(res_xinxi,url_id)
-        time_num = random.randint(1,3)
-        time.sleep(time_num)
+        # time_num = random.randint(1,3)
+        # time.sleep(time_num)
