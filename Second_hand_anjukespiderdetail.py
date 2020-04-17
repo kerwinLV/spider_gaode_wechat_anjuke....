@@ -34,9 +34,11 @@ pool = PooledDB(pymysql, 10,
 # cursor = conn.cursor()
 
 
-def requests_result(url, header,proxy):
+def requests_result(url, header):
+
     print("____requests_result_____")
-    res = requests.get(url, headers=header,proxies=proxy)
+    print(proxy)
+    res = requests.get(url, headers=header)
     # print(res.status_code)
     return res
 
@@ -355,21 +357,23 @@ if __name__ == '__main__':
     header = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"}
     urlid = select_sql_url()
-    for i in range(0, 3235):
-        proxy = get_ip()
+    proxy = get_ip()
+    for i in range(0, 600):
+        proxy1 = random.choice(proxy)
         url_and_id = next(urlid)
         # print(url_and_id)
-        print()
+        # print(proxy1)
         print(url_and_id)
 
         url_id = url_and_id[0]
         url1 = url_and_id[1]
         # url1 = url.format(i)
         # print(url1)
-        res = requests_result(url1, header,random.choice(proxy))
+        print(proxy1)
+        res = requests_result(url1, header)
         # print(res)
         res_xinxi = rexpath(res)
         print(res_xinxi)
         sql_save(res_xinxi,url_id)
-        # time_num = random.randint(1,3)
-        # time.sleep(time_num)
+        time_num = random.randint(1,3)
+        time.sleep(time_num)

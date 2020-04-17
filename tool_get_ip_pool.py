@@ -22,7 +22,7 @@ def get_ip():
     ip_list = []
     for i in result:
         ip_dict = {}
-        ip_dict[i[0]] = i[1]
+        ip_dict["https"] = "http://"+i[1]
         ip_list.append(ip_dict)
     return ip_list
 
