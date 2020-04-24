@@ -34,11 +34,11 @@ pool = PooledDB(pymysql, 10,
 # cursor = conn.cursor()
 
 
-def requests_result(url, header):
+def requests_result(url, header,proxy):
 
     print("____requests_result_____")
-    print(proxy)
-    res = requests.get(url, headers=header)
+    # print(proxy)
+    res = requests.get(url, headers=header,proxies = proxy)
     # print(res.status_code)
     return res
 
@@ -58,7 +58,7 @@ def rexpath(res_result):
                 res_xpath = res_etree.xpath('normalize-space(string(/html/body/div[3]/div[1]/div[1]/dl))').replace(
                     "：", "").split(" ")  # base节点  父节点
                 print("res_xpath是空的")
-            print(res_xpath)
+            # print(res_xpath)
             # if "所属小区" in res_xpath:
             #     print(res_xpath.index("小上海新城"))
             # re_1 = re.findall("房本年限：满五年产权性质：(.*?)唯一住房：是一手房源：否",res_xpath,re.S)
@@ -109,9 +109,26 @@ def rexpath(res_result):
             if issaled == 0:
                 if "所在位置" in res_xpath:
                     local_in = res_xpath.index("所在位置")
-                    res_secend_xpath_location = res_xpath[local_in + 3]  # 所在位置精确地址  1
+
                     res_secend_xpath_Area = res_xpath[local_in + 1].replace("－", "")  # 区 1
                     res_secend_xpath_zhen = res_xpath[local_in + 2].replace("－", "")  # 镇 1
+                    jinquedizhi_url  = res_etree.xpath('//div[@class="comm-commoninfo"]/h4/a/@href')
+                    if jinquedizhi_url:
+                        jinquedizhi_url = jinquedizhi_url[0]
+                    header = {
+                        "cookie":"sessid=A555D032-5AB0-A703-6418-E4FD19B65B4C; aQQ_ajkguid=A71B6DA6-0CA0-2CE3-F8BA-65E281D74C15; ctid=11; _ga=GA1.2.496016814.1586919064; wmda_new_uuid=1; wmda_uuid=12a0c78b78edc2e2762ffb89fe63e47c; wmda_visited_projects=%3B6289197098934; 58tj_uuid=954de72c-1343-42eb-9998-9927784991c5; als=0; isp=true; search_words=%E5%8D%83%E6%B1%87%E8%8B%91%E5%9B%9B%E6%9D%91%7C%E6%B2%89%E9%A6%99%E8%8B%91%E4%BA%8C%E8%A1%97%E5%9D%8A; lps=http%3A%2F%2Fwww.anjuke.com%2F%7Chttps%3A%2F%2Fcn.bing.com%2F; twe=2; _gid=GA1.2.388161245.1587695466; ajk_member_captcha=3f5375ea4fcbae4e820939e12de51186; wmda_session_id_6289197098934=1587704903698-f547de4d-3c0b-4d2d; Hm_lvt_c5899c8768ebee272710c9c5f365a6d8=1587000028,1587113689,1587457938,1587705289; Hm_lpvt_c5899c8768ebee272710c9c5f365a6d8=1587705289; browse_comm_ids=1025933%7C7733%7C1006701%7C189499%7C990328; __xsptplusUT_8=1; init_refer=; new_uv=18; new_session=0; ajk_member_verify=lertWBWba%2BrN7bMrwaQC9BP5dZiALQHyKTFUMQy1JGk%3D; ajk_member_verify2=NjkxNzA2NjZ85omL5py6NDExMTUyOTU2NDUwM3wx; __xsptplus8=8.23.1587710699.1587710938.8%232%7Cwww.baidu.com%7C%7C%7C%7C%23%23Z5cEuWDYV2eg2TdkpEn5AzkU40a7d6w-%23; _gat=1; xzfzqtoken=vsuGoivrevQEVef3vQO2t%2BZsdl%2Brs%2BHfSdeQ8SPb%2F7CsyvlaGxIu6Z18UVx80tVZin35brBb%2F%2FeSODvMgkQULA%3D%3D; propertys=xkf6m9-q9a5ly_xk4kqh-q9a1rc_xhevr3-q99tx6_xgjq38-q99twc_x3imd1-q99to9_xay0s9-q94p48_xeajdu-q94p3j_xffcof-q94nof_x62we6-q8xgmk_xdrorb-q8xe91_2ataaw8-q8xbfy_x8fw8s-q8xagj_xfiobx-q8xa2v_xf7c2b-q8x9ve_xfn1y9-q8x9s6_xe14y5-q8x9nd_wz41d7-q8x5ry_2athg9r-q8x3yf_xg8z6y-q8x24u_xfiwxc-q8wzpn_x61fbh-q8wxzi_xch4gn-q8wwga_xdw306-q8wwd2_x8oa6d-q8vi94_xcid36-q8vi73_xf3fop-q8vi6q_xfngfo-q8vb5y_xea01v-q8t6np_; ajkAuthTicket=TT=3cfcafdcd9860d13fcf009e82aafe436&TS=1587710951250&PBODY=nYFIm3HKKWst5ewZunFoKuNyZzZ6M1SYdzNrkyeB9Rqj1eGLukKwRMa5m_i-edjsGseF4VQDzMNW5Qi-GwlqMVvpuLtrOEFHZxQjIWekkkz632j-PfmDu7ImgiT61ov84urmt00vhyRFfCH4_lI1BtVly3V3DG7yb7WVvDpLNwc&VER=2",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"}
+                    print("---------------第三层url-------------------")
+                    print(jinquedizhi_url)
+                    proxy = {"http": "175.43.151.48"}
+                    res_jinque = requests.get(jinquedizhi_url,headers = header,proxies = proxy)
+                    if res_jinque.status_code ==200:
+                        etrjinque = etree.HTML(res_jinque.text)
+                        etradress = etrjinque.xpath("/html/body/div[2]/div[3]/div[1]/h1/span/text()")[0].split("-",2)[2]
+                        print(etradress)
+                    else:
+                        etradress=""
+                    res_secend_xpath_location = etradress  # 所在位置精确地址  1
                     # print(res_secend_xpath_location)
                     # print(res_secend_xpath_Area)
                     # print(res_secend_xpath_zhen)
@@ -280,13 +297,13 @@ def rexpath(res_result):
 
 def sql_save(res_xinxi,url_id):
     print("_________sql_save__________________")
-    print(type(url_id))
-    print(url_id)
+    # print(type(url_id))
+    # print(url_id)
     try:
         conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
         cur = conn.cursor()
         if res_xinxi["Belonging_District"] != "":
-            SQL = "insert into ershou_pudonghouse_detail (Belonging_District," \
+            SQL = "insert into ershou_pudonghouse_detail_second (Belonging_District," \
                   "location,Area,zhen," \
                   "Years,housetype,construction_area," \
                   "House_orientation,Floor,Supporting_elevator," \
@@ -318,15 +335,15 @@ def sql_save(res_xinxi,url_id):
             print("提交前")
             conn.commit()
             print("已存入成功")
-            SQL = 'UPDATE ershou_pudonghouse_href SET isspider=1 where id ="%d"'
+            SQL = 'UPDATE ershou_pudonghouse_detil_url SET isspider=1 where id ="%d"'
             cur.execute(SQL %(url_id))
             conn.commit()
             print("已修改id成功")
         else:
             print("这条数据不存入")
     except Exception as e:
-        # print(e)
-        pass
+        print(e)
+        # pass
     finally:
         cur.close()
         conn.close()
@@ -337,7 +354,7 @@ def select_sql_url():
     try:
         conn = pool.connection()
         cur = conn.cursor()
-        SQL = "SELECT id,href FROM ershou_pudonghouse_href WHERE isspider=0 "
+        SQL = "SELECT id,href FROM ershou_pudonghouse_detil_url WHERE isspider=0 "
         cur.execute(SQL)
         a = cur.fetchall()
         cur_result = iter(a)
@@ -355,25 +372,29 @@ if __name__ == '__main__':
     # url = "https://shanghai.anjuke.com/sale/pudong/p{}/#filtersort"
     # sys.stdout = Logger(r"C:\kerwin\workspace\requestpro\log.txt")
     header = {
+        "cookie":"sessid=A555D032-5AB0-A703-6418-E4FD19B65B4C; aQQ_ajkguid=A71B6DA6-0CA0-2CE3-F8BA-65E281D74C15; ctid=11; _ga=GA1.2.496016814.1586919064; wmda_new_uuid=1; wmda_uuid=12a0c78b78edc2e2762ffb89fe63e47c; wmda_visited_projects=%3B6289197098934; 58tj_uuid=954de72c-1343-42eb-9998-9927784991c5; als=0; isp=true; search_words=%E5%8D%83%E6%B1%87%E8%8B%91%E5%9B%9B%E6%9D%91%7C%E6%B2%89%E9%A6%99%E8%8B%91%E4%BA%8C%E8%A1%97%E5%9D%8A; lps=http%3A%2F%2Fwww.anjuke.com%2F%7Chttps%3A%2F%2Fcn.bing.com%2F; twe=2; _gid=GA1.2.388161245.1587695466; ajk_member_captcha=3f5375ea4fcbae4e820939e12de51186; wmda_session_id_6289197098934=1587704903698-f547de4d-3c0b-4d2d; Hm_lvt_c5899c8768ebee272710c9c5f365a6d8=1587000028,1587113689,1587457938,1587705289; Hm_lpvt_c5899c8768ebee272710c9c5f365a6d8=1587705289; browse_comm_ids=1025933%7C7733%7C1006701%7C189499%7C990328; __xsptplusUT_8=1; init_refer=; new_uv=18; new_session=0; ajk_member_verify=lertWBWba%2BrN7bMrwaQC9BP5dZiALQHyKTFUMQy1JGk%3D; ajk_member_verify2=NjkxNzA2NjZ85omL5py6NDExMTUyOTU2NDUwM3wx; __xsptplus8=8.23.1587710699.1587710938.8%232%7Cwww.baidu.com%7C%7C%7C%7C%23%23Z5cEuWDYV2eg2TdkpEn5AzkU40a7d6w-%23; _gat=1; xzfzqtoken=vsuGoivrevQEVef3vQO2t%2BZsdl%2Brs%2BHfSdeQ8SPb%2F7CsyvlaGxIu6Z18UVx80tVZin35brBb%2F%2FeSODvMgkQULA%3D%3D; propertys=xkf6m9-q9a5ly_xk4kqh-q9a1rc_xhevr3-q99tx6_xgjq38-q99twc_x3imd1-q99to9_xay0s9-q94p48_xeajdu-q94p3j_xffcof-q94nof_x62we6-q8xgmk_xdrorb-q8xe91_2ataaw8-q8xbfy_x8fw8s-q8xagj_xfiobx-q8xa2v_xf7c2b-q8x9ve_xfn1y9-q8x9s6_xe14y5-q8x9nd_wz41d7-q8x5ry_2athg9r-q8x3yf_xg8z6y-q8x24u_xfiwxc-q8wzpn_x61fbh-q8wxzi_xch4gn-q8wwga_xdw306-q8wwd2_x8oa6d-q8vi94_xcid36-q8vi73_xf3fop-q8vi6q_xfngfo-q8vb5y_xea01v-q8t6np_; ajkAuthTicket=TT=3cfcafdcd9860d13fcf009e82aafe436&TS=1587710951250&PBODY=nYFIm3HKKWst5ewZunFoKuNyZzZ6M1SYdzNrkyeB9Rqj1eGLukKwRMa5m_i-edjsGseF4VQDzMNW5Qi-GwlqMVvpuLtrOEFHZxQjIWekkkz632j-PfmDu7ImgiT61ov84urmt00vhyRFfCH4_lI1BtVly3V3DG7yb7WVvDpLNwc&VER=2",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"}
     urlid = select_sql_url()
-    proxy = get_ip()
+    # proxy = get_ip()
     for i in range(0, 600):
-        proxy1 = random.choice(proxy)
+        # proxy1 = random.choice(proxy)
         url_and_id = next(urlid)
-        # print(url_and_id)
-        # print(proxy1)
+        print("---------------------url---------------------")
         print(url_and_id)
+        # print(proxy1)
+        # print(url_and_id)
 
         url_id = url_and_id[0]
         url1 = url_and_id[1]
         # url1 = url.format(i)
         # print(url1)
-        print(proxy1)
-        res = requests_result(url1, header)
+        # print(proxy1)
+        proxy = {"http": "175.43.151.48"}
+        res = requests_result(url1, header,proxy)
         # print(res)
         res_xinxi = rexpath(res)
+        print("=----------------数据-----------------------")
         print(res_xinxi)
         sql_save(res_xinxi,url_id)
-        time_num = random.randint(1,3)
+        time_num = random.randint(3,5)
         time.sleep(time_num)
