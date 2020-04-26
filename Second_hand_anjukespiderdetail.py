@@ -120,7 +120,7 @@ def rexpath(res_result):
                         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"}
                     print("---------------第三层url-------------------")
                     print(jinquedizhi_url)
-                    proxy = {"http": "175.43.151.48"}
+                    proxy = {"http": "125.108.101.220"}
                     res_jinque = requests.get(jinquedizhi_url,headers = header,proxies = proxy)
                     if res_jinque.status_code ==200:
                         etrjinque = etree.HTML(res_jinque.text)
@@ -389,12 +389,12 @@ if __name__ == '__main__':
         # url1 = url.format(i)
         # print(url1)
         # print(proxy1)
-        proxy = {"http": "175.43.151.48"}
+        proxy = {"http": "125.108.101.220"}
         res = requests_result(url1, header,proxy)
         # print(res)
         res_xinxi = rexpath(res)
         print("=----------------数据-----------------------")
         print(res_xinxi)
         sql_save(res_xinxi,url_id)
-        time_num = random.randint(3,5)
+        time_num = random.randint(1,2)
         time.sleep(time_num)

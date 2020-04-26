@@ -53,6 +53,7 @@ def get_result(yuan_str, base64_str):
         else:
             yuanma += num
     return yuanma
+
 def parse(url_):
     response = requests.get(url_,headers=headers)
     response.encoding='utf-8'
@@ -75,9 +76,11 @@ def parse_id_detail(url_a):
 
     # 匹配ttf font
     cmp = re.findall(r";src:url\('(data.*)'\)\sformat\('truetype'\)", alls.text)
+    print(cmp)
     # print("cmp:", cmp)
     try:    #   遇错时分析错误情况，程序继续运行
         base64_str = cmp[0][cmp[0].index('base64,') + 7:]
+        print(base64_str)
         # print(base64_str)
         items=[]
         item = {}
