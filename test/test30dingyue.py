@@ -21,27 +21,49 @@ pool = PooledDB(pymysql, 10,
 # sheetName = "郑州市教工幼儿园"
 
 """常需要修改"""
-Cookie = "noticeLoginFlag=1; pgv_pvid=7256621674; pgv_pvi=5590167552;" \
-         " RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917e" \
-         "fd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh" \
-         "-Dhv6aYtSdPOWU=; pac_uid=0_fdd05521b5da8; noticeLoginFlag=1; " \
-         "bizuin=2399650834; mm_lang=zh_CN; rand_info=CAESICnk6yZEL5h+s" \
-         "UKaSfJuJiwsuCcVgfIf1Kv5bvTd+mCv; slave_bizuin=2399650834; data" \
-         "_bizuin=2399650834; data_ticket=jIkIDPatGtHSrCJeC7RklTbPSS2AxKJ" \
-         "2OHXJKsWrI10YNeWhsl2AYRTOzMBH8UAD; slave_sid=Rk1FTnJ6alZKMW9VNnVC" \
-         "T3BBREtqUVU3bkdaQTk2N0hRdUdlb1V0VTU3UGVvcWxqbGxyQ3M4ODFxb2xBT3dWN" \
-         "XFjZWh2dlpHMTNpQkMyQWdBS09mZFhVNkJuT3ZrSVB6clRyYWdwamZBemM4cF92cE" \
-         "5vb2ZaUG9wUnM0NmxxQVhxd1UyQ0o0Y2ZDY3k0eWUz; slave_user=gh_5235702" \
-         "21b57; xid=e95f4a1eab3ca0a47404732400a0ff1d; openid2ticket_oEsQHj1" \
-         "fpKrIcI9zGY1YXYPExUTk=R8cDqGBXaBpNHyrnklDokwYxvndCTZ4ekQVn7DGUVHU=;" \
-         " rewardsn=; wxtokenkey=777"
-token = "1544570018"
-fakeid = "MzAwMTMzNzM0NA=="
+Cookie = "noticeLoginFlag=1; pgv_pvid=7256621674;" \
+         "pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb" \
+         "259247b2456cc3884c97bde35ebc5d7a917efd2725129" \
+         "180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6v" \
+         "PufRh-Dhv6aYtSdPOWU=; pac_uid=0_fdd05521b5da8; " \
+         "noticeLoginFlag=1; mm_lang=zh_CN; rewardsn=; wx" \
+         "tokenkey=777; uin=o2509456238; pgv_info=ssid=s21" \
+         "00288342; skey=@4DbfQHDhR; pgv_si=s4205081600; u" \
+         "uid=0229be040d991585347f36bea98d8224; bizuin=2399" \
+         "650834; ticket=e565b6512881663bbf4c64fdd29963f0a4" \
+         "a196e9; ticket_id=gh_523570221b57; cert=MOZ4K8W8PVDb" \
+         "XW23ApMGTdQnMkmHHWws; rand_info=CAESIBPKNqPuCGI2W8y7r" \
+         "jUhcKS3jn2/F5+FrCibW621kBSw; slave_bizuin=2399650834; " \
+         "data_bizuin=2399650834; data_ticket=A4AHnqquMQlF/loT0Bf" \
+         "YWu4SsgGMWeB/v4KdOFP+vPXHaaa0Gtw5lPW8fG/Hx8Ba; slave_sid=" \
+         "NFZSREVKWjZzYWw2YjRfallCclpTNTl6Nk9YOGkyNnhIOWh0ZjAyOEZRZ" \
+         "2hmZWVwcmdNZDFxY1BNY3RKYzJkalVaaXVlUzM1b0RIUExGRGVla2lHa" \
+         "1dVaW9VYUNsN0FWWDJCUGJkN2ZDbXBvRUU5OERnSlNvZVcwcGFLWFlWT" \
+         "2lONkhJeHZFTHFZcGh3Z1dG; slave_user=gh_523570221b57; xid" \
+         "=0728b529a10dcdb6fa99f5d2a40e9eb0; openid2ticket_oEsQHj1f" \
+         "pKrIcI9zGY1YXYPExUTk=0fyLauB1zY7Iz8tlQKjnWGd0T1MV306thSGB3hUG0Ts="
 
+__biz = "MzAwMTMzNzM0NA=="
+"""常需要修改"""
+# pass_ticket = "4KzFV%252BkaUHM%252BatRt91i%252FshNERUQyQ0EOwFbc9%252FOe4gv6RiV6%252FJ293IIDnggg1QzC"
+pass_ticket = "c6UujXXs7AjvDss6rSBGV3r9VIAPiA2JreQISlqs%252F9n4a7h4AQAWfYXrY0rwq22T"
+# appmsg_token = "999_SVODv6i0%2FSNhK8CliOHzbKOydLO3IWXbnYfk2aiso-KkGL9w9a38IZlJCyOAXYyNJXdGn3zR5PTNWklR"
+appmsg_token = "1058_mcGHWlnBG3IRVUPmyqb3Ly5O1l7P4uRUaVPHrHM6jWmxic6fjYGd1hwwGYOJfQ68ScgZVEKxf5UiyhMI"
+phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=1195303851; devicetype=Windows10; " \
+              "version=62080085; lang=zh_CN; pass_ticket=c6UujXXs7AjvDss6rSBGV3r9VIAPiA2JreQIS" \
+              "lqs/9n4a7h4AQAWfYXrY0rwq22T; wap_sid2=CKvH+7kEElxWdzE3ZzAzZ1lDZXVpZzQwMWt" \
+              "3VnlRbWU0TDUxVGx5RDJ2bzItTUhDRDhHRHZXLXBhMDZSS2M0ZzZIZjN2SFNMZGRabEVROGRi" \
+              "NjlYcVhfQ0xjaWl6eUlFQUFBfjCn05P1BTgNQAE="
+req_id = "26104NhJjoQTXCxGmxOd15NM"
+key = "8c93de3f00d4c98d279bbfc0e80a59ce8272ec4dc80a031bd0fb8d31b3abc7c219c917976cc2838" \
+      "67f8e8e89f42c5ea30395214e718d94f76a1c688e94cd5d47af2537f9f68c042a60ef6bfb03deb418"
+uin = "MTE5NTMwMzg1MQ=="
 
 
 # 目标url
 url = "https://mp.weixin.qq.com/cgi-bin/appmsg"
+# url = "https://mp.weixin.qq.com/mp/profile_ext"
+#https://mp.weixin.qq.com/mp/profile_ext?action=getmsg&__biz=MzA5MjUwNzQxNw==&f=json&offset=190&count=10&is_ok=1&scene=124&uin=MTE5NTMwMzg1MQ%3D%3D&key=9de0b3367445c6d8bf7eb5527fcc3643c43fa07e5f53cfe6f10056aae2a4df9570f58ba0ccda9b9a0c8a024e0e09ca501b3ca2b93ccbfad73bb58ee6b3681a6d3516c75b4204f64407fb35cb327fb0d3&pass_ticket=YNQmeeth4Iea7oAdusfhwaVh9qhGhAeJaKd11iGI9TeDu2%2B5yRl0kXl8xH5SAEAi&wxtoken=&appmsg_token=1058_1JhJ%252BQQcAp0%252B38WA74d7Tk5UYPPCjk3YfdRGVA~~&x5=0&f=json
 
 # Cookie = "noticeLoginFlag=1; remember_acct=sisecx; pgv_pvi=7219193856; RK=G5400dGxMt; ptcz=557d79434d3b03505b26caa42def3262945db5b8327b95a0a003cc5513325400; pgv_pvid=2825329760; ua_id=rdfu3R15vwoD0zBWAAAAAEuTMkfxxxLJWgk5F4JZ1rg=; mm_lang=zh_CN; eas_sid=e1G5K3I7Q413H327D8r2D0N0m8; tvfe_boss_uuid=d04d93bc9e7c29dd; o_cookie=1094925362; pac_uid=1_1094925362; noticeLoginFlag=1; pgv_si=s6094909440; uuid=3fcfd3536a1da1617b1c460561fe4ee9; ticket=a42969b394561892ff83833984636cebf5e230e8; ticket_id=gh_bbec56f0be44; cert=kZiwXU4vUjwS4L4VbRFNhQ7wdk1nAg7w; data_bizuin=3279092990; bizuin=3202111501; data_ticket=vS4jc0RF6mPDMY34/PsmRIVOBbvvFgajttGtWY2XrQ7Letj9v+P853t42+JkQ112; slave_sid=ZkZqT2U5SFdCalJNUEhQaV9YWEpQbWRMT3lOWlNZZm9BUExGU0dybjVNZVZxS3d4TFB0YW04dW5VRG94cjA2bmlqd0lBc1FibmJ0cVhOS19TMm1IUWlFSVJZX1RZU3RraG4yMTlBazBZNnhCX2w0aUpNWjMzS2c5WTRJUWhtdmtBOHlmdWsxakFtNDJIc1ph; slave_user=gh_bbec56f0be44; xid=e42471c91cfa65d371d6fe4d219f1c3f; openid2ticket_o_vxyw0uA4Vzrdz952biH10elOaI=blxqkvVWDqz0nohpf5e4CJFqWP8P66HqBtotbbb9bpk=; rewardsn=; wxtokenkey=777"
 
@@ -60,7 +82,9 @@ number表示从第number页开始爬取，为5的倍数，从0开始。如0、5�
 token可以使用Chrome自带的工具进行获取
 fakeid是公众号独一无二的一个id，等同于后面的__biz
 """
-
+# 方式一:订阅号
+token = "943065620"
+fakeid = "MzA5MjUwNzQxNw=="
 
 # type在网页中会是10，但是无法取到对应的消息link地址，改为9就可以了
 type = '9'
@@ -76,6 +100,22 @@ data1 = {
     "fakeid": fakeid,
     "type": type,
 }
+# data1 = {
+#     "action":"getmsg",
+#     "__biz":__biz,
+#     "f":"json",
+#     "offset":1,
+#     "count":10,
+#     "is_ok":1,
+#     "scene":124,
+#     "uin":uin,
+#     "key":key,
+#     "pass_ticket":pass_ticket,
+#     "wxtoken":"",
+#     "appmsg_token":appmsg_token,
+#     "x5":0,
+#     "f":"json",
+# }
 #https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit_v2&action=edit&isNew=1&type=10&token=1786288653&lang=zh_CN
 #https://mp.weixin.qq.com/cgi-bin/appmsg?action=list_ex&begin=0&count=5&fakeid=MzI4MTU2NjE3NQ==&type=9&query=&token=1786288653&lang=zh_CN&f=json&ajax=1
 
@@ -88,11 +128,14 @@ def getDate(times):
 
 
 # 最大值365，所以range中就应该是73,15表示前3页
-def getAllInfo(url, begin):
+def getAllInfo(url,begin):
     # 拿一页，存一页
     messageAllInfo = []
     # begin 从0开始，365结束
+    # messageAllInfo = []
+    # begin 从0开始，365结束
     data1["begin"] = begin
+    # data1["offset"] = data1["offset"]*10
     # 使用get方法进行提交
     #https://mp.weixin.qq.com/cgi-bin/appmsg?begin=0&count=10&t=media/appmsg_list&type=10&action=list&token=1786288653&lang=zh_CN
     content_json = requests.get(url, headers=headers, params=data1, verify=False).json()
@@ -140,18 +183,14 @@ def getMoreInfo(link,title):
     # req_id = "0614ymV0y86FlTVXB02AXd8p"
     """常需要修改"""
     # pass_ticket = "4KzFV%252BkaUHM%252BatRt91i%252FshNERUQyQ0EOwFbc9%252FOe4gv6RiV6%252FJ293IIDnggg1QzC"
-    pass_ticket = "c6UujXXs7AjvDss6rSBGV3r9VIAPiA2JreQISlqs%252F9n4a7h4AQAWfYXrY0rwq22T"
+    pass_ticket = "PTfr%252FubN%252FsARjW1l8QLf3LmnOFGbc3V%252BNZ9oWERrVbdLPYx5uVWjUq5G2IbynL1I"
     # appmsg_token = "999_SVODv6i0%2FSNhK8CliOHzbKOydLO3IWXbnYfk2aiso-KkGL9w9a38IZlJCyOAXYyNJXdGn3zR5PTNWklR"
-    appmsg_token = "1058_mcGHWlnBG3IRVUPmyqb3Ly5O1l7P4uRUaVPHrHM6jWmxic6fjYGd1hwwGYOJfQ68ScgZVEKxf5UiyhMI"
-    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=1195303851; devicetype=Windows10; " \
-                  "version=62080085; lang=zh_CN; pass_ticket=c6UujXXs7AjvDss6rSBGV3r9VIAPiA2JreQIS" \
-                  "lqs/9n4a7h4AQAWfYXrY0rwq22T; wap_sid2=CKvH+7kEElxWdzE3ZzAzZ1lDZXVpZzQwMWt" \
-                  "3VnlRbWU0TDUxVGx5RDJ2bzItTUhDRDhHRHZXLXBhMDZSS2M0ZzZIZjN2SFNMZGRabEVROGRi" \
-                  "NjlYcVhfQ0xjaWl6eUlFQUFBfjCn05P1BTgNQAE="
-    req_id = "26104NhJjoQTXCxGmxOd15NM"
-    key = "8c93de3f00d4c98d279bbfc0e80a59ce8272ec4dc80a031bd0fb8d31b3abc7c219c917976cc2838" \
-          "67f8e8e89f42c5ea30395214e718d94f76a1c688e94cd5d47af2537f9f68c042a60ef6bfb03deb418"
-    uin = "MTE5NTMwMzg1MQ=="
+    appmsg_token = "1059_j74qBqHTA5BJr1%2BhwnJRKCXCwA7bWTeRERxe2wFTOvv0_HDOdRO7b6AldGJKv98lJbO6hXuKEl60U05z"
+    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=1195303851; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=PTfr/ubN/sARjW1l8QLf3LmnOFGbc3V+NZ9oWERrVbdLPYx5uVWjUq5G2IbynL1I; wap_sid2=CKvH+7kEElw3UWYyU0h3WTlScHRsRnYwTUswX3QycVdTV1RzenB6d1JtaTRpN1NKa0RlaVVrcVZyZ2J6bDJyYXBiS3daXzdBcnZROXBJbXlxaG0tb2lxdnNqRUZNeU1FQUFBfjCkhKr1BTgNQAE="
+    req_id = "3015g74lKsBaC9EASQ9uDyeT"
+    key = "8c93de3f00d4c98db20043bac7bb8970ccf31892d647554922aa2cd90dcdd82c4bd" \
+          "f05da925533dba65f61466049a09fa037b2b6122f3655d484e4cd1332275eeecd75b51945bdf5fad6b2d68a4d1094"
+    uin = "MTE5NTMwMzg1MQ%3D%3D"
     # 目标url
     url = "https://mp.weixin.qq.com/mp/getappmsgext"
     # 添加Cookie避免登陆操作，这里的"User-Agent"最好为手机浏览器的标识
@@ -334,11 +373,13 @@ def main():
     # 爬10页成功，从11页开始
     for i in range(0, 1):
         begin = i * 5
-        messageAllInfo = getAllInfo(url, str(begin))
-        print("第%s页" % i)
+    #     offset = i*10
+        messageAllInfo = getAllInfo(url,begin)
+        # print("第%s页" % i)
         print(messageAllInfo)
         # putIntoMogo(messageAllInfo)
-        save_mysql(messageAllInfo)
+        # save_mysql(messageAllInfo)
+        time.sleep(100000)
 
 
 if __name__ == '__main__':
