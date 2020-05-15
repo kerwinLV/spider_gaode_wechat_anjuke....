@@ -30,3 +30,48 @@ res_xpath是空的
 精装修
 {'Belonging_District': '莲康苑', 'Housing_type': '1室1厅1卫', 'location': '高青路4567弄', 'Area': '浦东', 'zhen': '北蔡', 'Years': '2014年', 'housetype': '普通住宅', 'construction_area': '', 'House_orientation': '南', 'Floor': '中层(共11层)', 'Degree_of_decoration': '精装修', 'Supporting_elevator': '', 'Only_housing': '', 'Housing_unit_price': '', 'Reference_down_payment': '', 'Year_of_the_room': '', 'First_hand_housing': '', 'Property_rights_years': '', 'Property_nature': ''}
 我存入了
+<Element html at 0x1b97e5a0388>
+res_xpath是空的
+莲康苑
+1室1厅1卫
+['浦东', '北蔡', '高青路4567弄']
+高青路4567弄
+浦东
+北蔡
+2014年
+南
+普通住宅
+中层(共11层)
+精装修
+{'Belonging_District': '莲康苑', 'Housing_type': '1室1厅1卫', 'location': '高青路4567弄', 'Area': '浦东', 'zhen': '北蔡', 'Years': '2014年', 'housetype': '普通住宅', 'construction_area': '', 'House_orientation': '南', 'Floor': '中层(共11层)', 'Degree_of_decoration': '精装修', 'Supporting_elevator': '', 'Only_housing': '', 'Housing_unit_price': '', 'Reference_down_payment': '', 'Year_of_the_room': '', 'First_hand_housing': '', 'Property_rights_years': '', 'Property_nature': ''}
+我存入了
+<Element html at 0x1b3b0a00308>
+res_xpath是空的
+莲康苑
+1室1厅1卫
+['浦东', '北蔡', '高青路4567弄']
+高青路4567弄
+浦东
+北蔡
+2014年
+南
+普通住宅
+中层(共11层)
+精装修
+{'Belonging_District': '莲康苑', 'Housing_type': '1室1厅1卫', 'location': '高青路4567弄', 'Area': '浦东', 'zhen': '北蔡', 'Years': '2014年', 'housetype': '普通住宅', 'construction_area': '', 'House_orientation': '南', 'Floor': '中层(共11层)', 'Degree_of_decoration': '精装修', 'Supporting_elevator': '', 'Only_housing': '', 'Housing_unit_price': '', 'Reference_down_payment': '', 'Year_of_the_room': '', 'First_hand_housing': '', 'Property_rights_years': '', 'Property_nature': ''}
+我存入了
+<Element html at 0x15c4b8e0308>
+res_xpath是空的
+莲康苑
+1室1厅1卫
+['浦东', '北蔡', '高青路4567弄']
+高青路4567弄
+浦东
+北蔡
+2014年
+南
+普通住宅
+中层(共11层)
+精装修
+{'Belonging_District': '莲康苑', 'Housing_type': '1室1厅1卫', 'location': '高青路4567弄', 'Area': '浦东', 'zhen': '北蔡', 'Years': '2014年', 'housetype': '普通住宅', 'construction_area': '', 'House_orientation': '南', 'Floor': '中层(共11层)', 'Degree_of_decoration': '精装修', 'Supporting_elevator': '', 'Only_housing': '', 'Housing_unit_price': '', 'Reference_down_payment': '', 'Year_of_the_room': '', 'First_hand_housing': '', 'Property_rights_years': '', 'Property_nature': ''}
+我存入了
