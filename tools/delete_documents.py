@@ -2,24 +2,25 @@ import requests
 from lxml import etree
 import time
 import re
+import json
 from tools.sqlconn import pool
 
 # from test.test42 import url_list
 # {}一级/{}二级/{}名字/{}时间戳
-tupainlujing = "http://www.encollege.cn/imageFile/hjxx/{}/{}/{}/{}.jpg"
+# tupainlujing = "http://www.encollege.cn/imageFile/hjxx/{}/{}/{}/{}.jpg"
 
 
 def url_list():
     # url = "https://www.encollege.cn/gwapi/article/find?total=23&programaId=%d&page=%d"
     # url = "https://www.encollege.cn/gwapi/article/find?total=42&programaId=%d&page=%d"
-    url = "https://www.encollege.cn/gwapi/article/find?total=828&programaId=%d&page=%d"
+    # url = "https://www.encollege.cn/gwapi/article/find?total=828&programaId=%d&page=%d"
     # url = "https://www.encollege.cn/gwapi/article/find?total=209&programaId=%d&page=%d"
-    # url = "https://www.encollege.cn/gwapi/article/find?total=44&programaId=%d&page=%d"
+    url = "https://www.encollege.cn/gwapi/article/find?total=44&programaId=%d&page=%d"
     page = int(re.findall('\?total=(\d+)', url)[0]) // 20 + 2
     url_list = []
     for i in range(1, 5):
         for j in range(1, page):
-            url_list.append(url % (30+ i, j))
+            url_list.append(url % (40+ i, j))
             # print(url%(20+i,j))
     return url_list
 
@@ -40,59 +41,56 @@ def get_res(url):
     res = requests.get(url, headers=headers).json()
     items = res["data"]["items"]
     for i in items:
-        e = etree.HTML(i["context"])
-        proName2 = i["proName"]
-        parentName1 = i["parentName"]
-        context = i["context"]
-        # print(i["context"])
-        title = i["title"]
-        # print(title)
         id = i["id"]
-        # print(title)
-        lujing = e.xpath("//img[@alt]/@src")
-        programaId = i["programaId"]
-        proParentID = i["proParentID"]
-        created = int(time.mktime(time.strptime(i["created"], '%Y-%m-%d %H:%M:%S'))) * 1000
-        for j in lujing:
-            print(j)
-            if "documents" in j:
-                print(j)
-
-                conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
-                cur = conn.cursor()
-                SQL = 'insert into huanjingdatadeal2_copy1 (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-                cur.execute(SQL, (title, url,  id, programaId, created, proParentID, j,parentName1,proName2))
-                conn.commit()
-                print("写入成功")
-                cur.close()
-                conn.close()
-            elif "http://www.encollege.cn/imageFile/hjxx/" in j:
-                res1 = requests.get(j,headers=headers)
-                if res1.status_code !=200:
-                    conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
-                    cur = conn.cursor()
-                    SQL = 'insert into huanjingdatadeal2_copy1 (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-                    cur.execute(SQL, (title, url, id, programaId, created, proParentID, j, parentName1, proName2))
-                    conn.commit()
-                    print("写入成功")
-                    cur.close()
-                    conn.close()
-            else:
-                continue
-
-                # firstnum = re.findall("/documents/(\d+)/(\d+)/",j)[0][0]
-                # secondnum = re.findall("/documents/(\d+)/(\d+)/", j)[0][1]
-
-                # if "t=" in j:
-                    # t = j.split("?t=")[1]
-                    # zuixinglujing = tupainlujing.format(parentName1, proName2, title, t)
-                    # print(zuixinglujing)
-                    # context = context.replace(j, zuixinglujing)
-
-                # else:
-                    # continue
-                # except Exception as e:
-                #     t = ""
+        title = i["title"]
+        context = i["context"]
+        if 'documents' in context:
+            rea = re.findall('(documents.*?/>)', context, re.S)
+            # print(rea)
+            for i in rea:
+                dom = '<img alt="" src="/{}'.format(i)
+                context = context.replace(dom, "")
+            data1 = {
+                "id":id,
+                "context":context
+            }
+            # print(id,title)
+            # print(context)
+            headers = {"Content-Type": "application/json"}
+            # https://www.encollege.cn/gwapi/article/find?programaId=36&temp=1
+            updateurl = "https://www.encollege.cn/gwapi/article/updateContent"
+            res5 = requests.post(updateurl,headers = headers,data=json.dumps(data1))
+            print(res5.text)
+        else:
+            continue
+        # e = etree.HTML(i["context"])
+        # proName2 = i["proName"]
+        # parentName1 = i["parentName"]
+        # context = i["context"]
+        # # print(i["context"])
+        # title = i["title"].replace('"', "")
+        # # print(title)
+        # id = i["id"]
+        # # print(title)
+        # lujing = e.xpath("//img[@alt]/@src")
+        # programaId = i["programaId"]
+        # proParentID = i["proParentID"]
+        # created = int(time.mktime(time.strptime(i["created"], '%Y-%m-%d %H:%M:%S'))) * 1000
+        # for j in lujing:
+        #     if "documents" in j:
+        #         print(j)
+        #         firstnum = re.findall("/documents/(\d+)/(\d+)/",j)[0][0]
+        #         secondnum = re.findall("/documents/(\d+)/(\d+)/", j)[0][1]
+        #         if "t=" in j:
+        #             t = j.split("?t=")[1]
+        #             zuixinglujing = tupainlujing.format(parentName1, proName2, title, t)
+        #             print(zuixinglujing)
+        #             context = context.replace(j, zuixinglujing)
+        #
+        #         else:
+        #             # continue
+        #         # except Exception as e:
+        #             t = ""
             # else:
             #     continue
             #
