@@ -2,6 +2,7 @@
 import requests
 import time
 from lxml import etree
+import random
 import re
 import json
 from pymongo import MongoClient
@@ -25,10 +26,9 @@ pool = PooledDB(pymysql, 10,
 # sheetName = "郑州市教工幼儿园"
 
 """常需要修改"""
-
 publicName = "绿色上海"
-Cookie = "noticeLoginFlag=1; pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; pgv_si=s7675512832; cert=Ac2ZZeUH3U_qZUrh304f7vWpmitgvffI; luin=null; lskey=null; user_id=null; session_id=null; _qpsvr_localtk=0.32918221019261096; login_type=1; verifysession=h01bee381a402df4a3287cc856cc05b3075cfd89f7cc2fea5d85ef206953fd63d44fd854794fda3cb00; lbs_refer=9148bf92cf751e8b928c9e894b2d77c5d63ff097efc296991a5d588f94a04cc068312e919f4ad12f309abef1665b8312; sess_skey=4fdca96843205da3df73919192d204cd; sig=h011d7aee2ab175d9981e68cfd9e7906857c55517d8e0f9388820b3a4b4fdbf50c28c31c81a55792af9; master_key=BM3rNvaCRsXQB83b1LjUUTSnDAgTsKVCzRJ25cuVNsA=; openid2ticket_oEsQHj1fpKrIcI9zGY1YXYPExUTk=HOVR8WGE6H1S2PcSSx+MCCrcoF1hy86fW47oMCM4Kbs=; rewardsn=; wxtokenkey=777; pac_uid=1_ull; XWINDEXGREY=0; pgv_info=ssid=s4319674085; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=kZZ2HeJSL40xJa9Evv44wg12ZnVKB+P0fTSdyU1uzXc=; uin=o2509456238; skey=@TPpZ1iv6q; uuid=ffa34a6fa243a1f2ce9e9d906d5f9c55; rand_info=CAESIPZFvOJfb/Ul/0zoW7YJwsqMUPmjdPFkghjMkz/5mFUU; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=VonzqZXWF1H6Uyo95PuaNPz1JwZdDDZ22lI5EYcC0HwH9G+Cq/pRDHe37CIBI1FB; slave_sid=dktNaGxTb1l0WUV1N2Y0cGxvdUNJcUFPcFhKZTRQb0tlRklicUdjT1VnNl9jMnBDOGhoN2o0Z0lkTldvMWFDRVdnOU9EcDFJWlBpeUo2TkVmbzJmMFljbGxQTEJXT3hIcmcwOXJEWnRPMkgyRVhNdEZ2eW5YY0RDZEppODY2aFk5Mk9aMXFwWkpqcVVCemtW; slave_user=gh_724a600181bc; xid=ef6911976d866527610d6093424198e2"
-token = "786469181"
+Cookie = "noticeLoginFlag=1; pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; openid2ticket_oEsQHj1fpKrIcI9zGY1YXYPExUTk=HOVR8WGE6H1S2PcSSx+MCCrcoF1hy86fW47oMCM4Kbs=; pac_uid=1_ull; XWINDEXGREY=0; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=kZZ2HeJSL40xJa9Evv44wg12ZnVKB+P0fTSdyU1uzXc=; ptui_loginuin=2776971405; tvfe_boss_uuid=f6b4f9ad709069c4; pgv_si=s7183976448; _qpsvr_localtk=0.7061797776407348; rewardsn=; wxtokenkey=777; pgv_info=ssid=s4751006496; uuid=3366f934523ae0aa4b9297beb891b046; rand_info=CAESIC2KWKQAVe0nn01gP6AvBCZbjFPrMoxWGMsd3DmzwRfL; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=+IhPwXWyjli6GSnM1RW5Qj2Bfn+fa5hSY5n8ppDMiZQHqczlQHZXCtWZbYan82Er; slave_sid=QmhoRVVDQ2IxNmlNbW5JRVVrNkcxMV8xcmxKQ3hCZjM3V1dVcVdTRXJLdjR2V3htTDlMR0pfczJ1c19rMHF5UXNHakxNYVhCdFNhQXh1WmRnVFpES2NjVTBIYjAxTjVVaXE1TlYxYXJ0TXNfM21Yclg5YlhyTzhqZFgySkVMYTdTMDV5a3N1V05QZ3htZTFG; slave_user=gh_724a600181bc; xid=387b6e5fc7b0a0e15d2047f2195880b6"
+token = "1821463189"
 fakeid = "MzAwMTMzNzM0NA=="
 """常需要修改"""
 
@@ -135,12 +135,12 @@ def getMoreInfo(link, title):
     # req_id = "0614ymV0y86FlTVXB02AXd8p"
     """常需要修改"""
     # pass_ticket = "4KzFV%252BkaUHM%252BatRt91i%252FshNERUQyQ0EOwFbc9%252FOe4gv6RiV6%252FJ293IIDnggg1QzC"
-    pass_ticket = "9ixNcNehXO9hBS35gn00%252Bg8xz2HVCHtpXRS8oVqbx7JoJUbiXZoHxkAbiewx1WuP"
+    pass_ticket = "zVL1u%252FuBesVmw4hu3akO8WtXYWbxmRhCu1geC3F6%252FPlwxdQGs4kS%252F9LW1bjsk2RU"
     # appmsg_token = "999_SVODv6i0%2FSNhK8CliOHzbKOydLO3IWXbnYfk2aiso-KkGL9w9a38IZlJCyOAXYyNJXdGn3zR5PTNWklR"
-    appmsg_token = "1061_IvX%2Bmci2LDzVIV0BQa-3KQLC8N6t2N8TrEUYE9WRBssx2Gw9EvKSjDUJnTtPEgU64husCHd3nRdiGshd"
-    phoneCookie = "pac_uid=0_5ebe5fb466717; pgv_info=ssid=s7157454868; pgv_pvid=6548050840; rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=9ixNcNehXO9hBS35gn00+g8xz2HVCHtpXRS8oVqbx7JoJUbiXZoHxkAbiewx1WuP; wap_sid2=CP3Bkq0BElw3OU5lTzRHQnRjc0hWeVZaNDQ4LTVuMjZvem5uLW1Hcl82S3dGUnBpQlNUU29aNzRKWUNLSV9ubTg2NmN2VWtWRnRBejNlT1lGRWFyNHdrWVo5dHp2U1VFQUFBfjDEwPn1BTgNQAE="
-    req_id = "1517R0OZ14rzJk6fiIFDdSEp"
-    key = "04475ecf75686d614709e41eac1a00fb454154a9ddc38bca57b9b1a2df97c252d2e249931e6f15dfd402b1f15af5710fcd0ed589ac1bed39cb9720a0b4c01db422f3832f5ef635d61d1889de8c9cf8df"
+    appmsg_token = "1061_zPXEChu7j%2Fh5Q9NNyfUEMx8wHXFHkPU427s9t6vtEQwk9vw9gXAkbGJqnicqsAGRgrD7IRjOfx6DTfgP"
+    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=zVL1u/uBesVmw4hu3akO8WtXYWbxmRhCu1geC3F6/PlwxdQGs4kS/9LW1bjsk2RU; wap_sid2=CP3Bkq0BElxBT1lOY0x2ZHIxd1l4TFdhamtHdmNSMnUtam93RXlNOTJabzV3WkVvalFoM2RqQUVQTTRrQzJSVDhSN2NHSkx6UlZ3RUN6WWp0M0xyUjFiYmlQYk0yQ1VFQUFBfjCpsZL2BTgNQAE="
+    req_id = "2010z0NnLZppPNNPvcS4VJlt"
+    key = "200ac961ce477726e432454843d0ebcb134f91480a51818410736ef125d6c8942c960161c5089a326fa7c197706ce0e3fbce13b55b32c4653c42d5a07c0995fa55fe5ce434cb92bcb2e7351dcbea49ea"
     uin = "MzYzMTEwNjUz"
     """常需要修改"""
     # 目标url
@@ -263,7 +263,8 @@ def getMoreInfo(link, title):
     # print("error:" + str(content))
 
     # 歇3s，防止被封
-    time.sleep(3)
+    timenum = random.randint(3,5)
+    time.sleep(timenum)
     return readNum, likeNum, context, sn
 
 
@@ -329,9 +330,21 @@ def save_mysql(urlList):
         cur.execute(sql,(i["sn"]))
         onenum = cur.fetchone()
         if onenum:
-            sql ='insert into wxcms_article_read (aid,readCount,created,linkReading) values (%s,%s,%s,%s)'
-            cur.execute(sql, (onenum["id"],i["readNum"],int(time.time()),i["likeNum"]))
-            conn.commit()
+            sql = 'select * from wxcms_article_read where aid=%s'
+            cur.execute(sql,(onenum["id"]))
+            read_list = cur.fetchall()
+            if read_list:
+                read_list1 = sorted(read_list,key=lambda x: x["readCount"],reverse=True)
+                if i["readNum"]>read_list1[0]["readCount"]:
+                    sql = 'insert into wxcms_article_read (aid,readCount,created,linkReading) values (%s,%s,%s,%s)'
+                    cur.execute(sql, (onenum["id"], i["readNum"], int(time.time()), i["likeNum"]))
+                    conn.commit()
+                else:
+                    pass
+            else:
+                sql ='insert into wxcms_article_read (aid,readCount,created,linkReading) values (%s,%s,%s,%s)'
+                cur.execute(sql, (onenum["id"],i["readNum"],int(time.time()),i["likeNum"]))
+                conn.commit()
 
         else:
             sql = 'insert into wxcms_article_a (title,intPageReadCount,linkReading,url,content,issueTime,digest,sn,publicName) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)'
@@ -352,12 +365,12 @@ def save_mysql(urlList):
 
     # messageAllInfo = []
     # 爬10页成功，从11页开始
-    # 蓝带 185 37
+    # 蓝带 185 37  read 3677 a 3585 origin 3585
     # 绿色上海 1720 344
 
 
 if __name__ == '__main__':
-    for i in range(212, 347):
+    for i in range(0, 5):
         begin = i * 5
         print("第%s页" % i)
         messageAllInfo = getAllInfo(url, str(begin))

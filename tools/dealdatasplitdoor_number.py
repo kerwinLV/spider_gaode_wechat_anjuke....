@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import time
 import re
 import json
@@ -12,7 +12,7 @@ pool = PooledDB(pymysql, 10,
                 passwd='123456',
                 db='ip_proxy_pool',
                 charset='utf8'
-)
+                )
 
 conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
 cur1 = conn.cursor()
@@ -22,10 +22,10 @@ cur1.execute(SQL)
 data = cur1.fetchall()
 
 # dataiter = iter(data)
-dataiter=data
+dataiter = data
 cur1.close()
 conn.close()
-for jk in range(0,len(data)+1):
+for jk in range(0, len(data) + 1):
     i = dataiter[jk]
     print(i)
     # print(i)
@@ -47,7 +47,9 @@ for jk in range(0,len(data)+1):
                    'area_code,types,test,btype,ctype,stype,status,picture)' \
                    ' VALUES ("%s","%s","%s","%s","%s","%s","%s","%s","%s",' \
                    '"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")'
-            cur2.execute(sql1 % (i[1],"{}{}号".format(i[4],j),"{}号".format(j),i[4],road,i[7],i[8],i[9],i[10],i[11],i[12],i[13],i[14],i[17],i[18],i[19],i[20],i[21],i[22],i[24],))
+            cur2.execute(sql1 % (
+            i[1], "{}{}号".format(i[4], j), "{}号".format(j), i[4], road, i[7], i[8], i[9], i[10], i[11], i[12], i[13],
+            i[14], i[17], i[18], i[19], i[20], i[21], i[22], i[24],))
             conn2.commit()
             print("提交成功")
             # print(i[0],i[3],i[1])
@@ -64,8 +66,8 @@ for jk in range(0,len(data)+1):
         # print(i[0],i[3],i[1])
         cur2.close()
         conn2.close()
-            #             print("jjjjjjj")
-            # print(j)
+        #             print("jjjjjjj")
+        # print(j)
     #     print(i_)
 
     else:
@@ -91,4 +93,3 @@ for jk in range(0,len(data)+1):
     #     continue
 
     # time.sleep(1000000)
-
