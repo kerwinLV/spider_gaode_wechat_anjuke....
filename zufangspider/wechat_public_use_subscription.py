@@ -105,17 +105,20 @@ def getAllInfo(url, begin):
             # print(b)
             readNum, likeNum, content, sn = getMoreInfo(url1, item["title"])
             # readNum, likeNum, comment_count = 0,0,0
-            info = {
-                "title": item['title'],
-                "readNum": readNum,
-                "likeNum": likeNum,
-                "digest": item['digest'],
-                "date": item['update_time'],
-                "url": url1,
-                "content": content,
-                "sn": sn
-            }
-            messageAllInfo.append(info)
+            if content !=0:
+                info = {
+                    "title": item['title'],
+                    "readNum": readNum,
+                    "likeNum": likeNum,
+                    "digest": item['digest'],
+                    "date": item['update_time'],
+                    "url": url1,
+                    "content": content,
+                    "sn": sn
+                }
+                messageAllInfo.append(info)
+            else:
+                continue
         # print(messageAllInfo)
         # print(begin)
         return messageAllInfo
@@ -135,12 +138,12 @@ def getMoreInfo(link, title):
     # req_id = "0614ymV0y86FlTVXB02AXd8p"
     """常需要修改"""
     # pass_ticket = "4KzFV%252BkaUHM%252BatRt91i%252FshNERUQyQ0EOwFbc9%252FOe4gv6RiV6%252FJ293IIDnggg1QzC"
-    pass_ticket = "zVL1u%252FuBesVmw4hu3akO8WtXYWbxmRhCu1geC3F6%252FPlwxdQGs4kS%252F9LW1bjsk2RU"
+    pass_ticket = "DkbjRg%252F6aSmI7OysoWhlW%252BS48Sv13xvSExxHHmJtHn3YFZYl0vShHMJoFXJiAXGc"
     # appmsg_token = "999_SVODv6i0%2FSNhK8CliOHzbKOydLO3IWXbnYfk2aiso-KkGL9w9a38IZlJCyOAXYyNJXdGn3zR5PTNWklR"
-    appmsg_token = "1061_zPXEChu7j%2Fh5Q9NNyfUEMx8wHXFHkPU427s9t6vtEQwk9vw9gXAkbGJqnicqsAGRgrD7IRjOfx6DTfgP"
-    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=zVL1u/uBesVmw4hu3akO8WtXYWbxmRhCu1geC3F6/PlwxdQGs4kS/9LW1bjsk2RU; wap_sid2=CP3Bkq0BElxBT1lOY0x2ZHIxd1l4TFdhamtHdmNSMnUtam93RXlNOTJabzV3WkVvalFoM2RqQUVQTTRrQzJSVDhSN2NHSkx6UlZ3RUN6WWp0M0xyUjFiYmlQYk0yQ1VFQUFBfjCpsZL2BTgNQAE="
-    req_id = "2010z0NnLZppPNNPvcS4VJlt"
-    key = "200ac961ce477726e432454843d0ebcb134f91480a51818410736ef125d6c8942c960161c5089a326fa7c197706ce0e3fbce13b55b32c4653c42d5a07c0995fa55fe5ce434cb92bcb2e7351dcbea49ea"
+    appmsg_token = "1062_McU6%2BZq%2FUuv4WqYwY_98cmdBgBNFhZTxwC_X7jSiG9Q1U_qzRHXs-GHiGi5VcqRb1ZAgG5Gahg6aiNam"
+    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=DkbjRg/6aSmI7OysoWhlW+S48Sv13xvSExxHHmJtHn3YFZYl0vShHMJoFXJiAXGc; wap_sid2=CP3Bkq0BElxnWU9JeVJqS1RiR1F1QlltU1ExRU9ySzB3QV9UNnpPRmlYa24zM0xYdlBTWjF1YWJfYTNNNDAxSUtxOXpmM2NfQ01VeFA2NndWdmxrU1NlMU0xdTJhU1lFQUFBfjDTyJP2BTgNQAE="
+    req_id = "2016Eb5wwB17bbI1Avh0lNp6"
+    key = "28a0bb6de44084e293bdeaea079977731005ea5a07659dea81b86750eb4e9d0a7f977ee0f0eb595dc53edf6868ea88555bb69d182196d0634d62b8bb116d3d556bfe12a5458aec6fa3a6987e9d26b87b"
     uin = "MzYzMTEwNjUz"
     """常需要修改"""
     # 目标url
@@ -232,30 +235,34 @@ def getMoreInfo(link, title):
     # print(content)
     # print(content["appmsgstat"]["read_num"], content["appmsgstat"]["like_num"])
     print(content)
-    readNum = content["appmsgstat"]["read_num"]
-    print("----------------readNum------------------------")
-    print(readNum)
+    if "appmsgstat" in content:
+        readNum = content["appmsgstat"]["read_num"]
+        print("----------------readNum------------------------")
+        print(readNum)
 
-    likeNum = content["appmsgstat"]["like_num"]
-    print("-----------------likeNum----------------------------")
-    print(likeNum)
+        likeNum = content["appmsgstat"]["like_num"]
+        print("-----------------likeNum----------------------------")
+        print(likeNum)
 
 
-    headers1 = {
-        # "": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.901.400 QQBrowser/9.0.2524.400"
-        "User-Agent": "Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36"
-    }
-    cont = etree.HTML(requests.get(link, headers=headers1).text)
-    cont1 = cont.xpath('//*[@id="js_content"]/section')
-    if cont1:
-        context = etree.tostring(cont1[0],encoding="utf-8",method='html').decode("utf-8")
-    else:
-        cont1 = cont.xpath('//*[@id="img-content"]')
+        headers1 = {
+            # "": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.901.400 QQBrowser/9.0.2524.400"
+            "User-Agent": "Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36"
+        }
+        cont = etree.HTML(requests.get(link, headers=headers1).text)
+        cont1 = cont.xpath('//*[@id="js_content"]/section')
         if cont1:
-            context = etree.tostring(cont1[0],encoding="utf-8", method='html').decode("utf-8")
+            context = etree.tostring(cont1[0],encoding="utf-8",method='html').decode("utf-8")
         else:
-            context = ""
-        print("可能是转发")
+            cont1 = cont.xpath('//*[@id="img-content"]')
+            if cont1:
+                context = etree.tostring(cont1[0],encoding="utf-8", method='html').decode("utf-8")
+            else:
+                context = ""
+            print("可能是转发")
+    else:
+        print("没有appmsgstat")
+        readNum, likeNum, context=0,0,0
         # context=""
     # print("---------------context-----------------------")
     # print("true:" + str(comment_count))
@@ -366,11 +373,11 @@ def save_mysql(urlList):
     # messageAllInfo = []
     # 爬10页成功，从11页开始
     # 蓝带 185 37  read 3677 a 3585 origin 3585
-    # 绿色上海 1720 344
+    # 绿色上海 1720 348 300
 
 
 if __name__ == '__main__':
-    for i in range(0, 5):
+    for i in range(0, 349):
         begin = i * 5
         print("第%s页" % i)
         messageAllInfo = getAllInfo(url, str(begin))
