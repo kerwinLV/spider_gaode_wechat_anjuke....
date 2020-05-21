@@ -26,10 +26,10 @@ pool = PooledDB(pymysql, 10,
 # sheetName = "郑州市教工幼儿园"
 
 """常需要修改"""
-publicName = "绿色上海"
-Cookie = "noticeLoginFlag=1; pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; openid2ticket_oEsQHj1fpKrIcI9zGY1YXYPExUTk=HOVR8WGE6H1S2PcSSx+MCCrcoF1hy86fW47oMCM4Kbs=; pac_uid=1_ull; XWINDEXGREY=0; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=kZZ2HeJSL40xJa9Evv44wg12ZnVKB+P0fTSdyU1uzXc=; ptui_loginuin=2776971405; tvfe_boss_uuid=f6b4f9ad709069c4; pgv_si=s7183976448; _qpsvr_localtk=0.7061797776407348; rewardsn=; wxtokenkey=777; pgv_info=ssid=s4751006496; uuid=3366f934523ae0aa4b9297beb891b046; rand_info=CAESIC2KWKQAVe0nn01gP6AvBCZbjFPrMoxWGMsd3DmzwRfL; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=+IhPwXWyjli6GSnM1RW5Qj2Bfn+fa5hSY5n8ppDMiZQHqczlQHZXCtWZbYan82Er; slave_sid=QmhoRVVDQ2IxNmlNbW5JRVVrNkcxMV8xcmxKQ3hCZjM3V1dVcVdTRXJLdjR2V3htTDlMR0pfczJ1c19rMHF5UXNHakxNYVhCdFNhQXh1WmRnVFpES2NjVTBIYjAxTjVVaXE1TlYxYXJ0TXNfM21Yclg5YlhyTzhqZFgySkVMYTdTMDV5a3N1V05QZ3htZTFG; slave_user=gh_724a600181bc; xid=387b6e5fc7b0a0e15d2047f2195880b6"
-token = "1821463189"
-fakeid = "MzAwMTMzNzM0NA=="
+publicName = "绿色上海"  #蓝带LeCordonBleu
+Cookie = "noticeLoginFlag=1; pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; openid2ticket_oEsQHj1fpKrIcI9zGY1YXYPExUTk=HOVR8WGE6H1S2PcSSx+MCCrcoF1hy86fW47oMCM4Kbs=; pac_uid=1_ull; XWINDEXGREY=0; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=kZZ2HeJSL40xJa9Evv44wg12ZnVKB+P0fTSdyU1uzXc=; ptui_loginuin=2776971405; tvfe_boss_uuid=f6b4f9ad709069c4; pgv_si=s7183976448; _qpsvr_localtk=0.7061797776407348; rewardsn=; wxtokenkey=777; pgv_info=ssid=s4751006496; uuid=2eab5e6e5414920804a4aa22e20cf0a4; rand_info=CAESIJgOYlPYkAiVNSIRCLOXPu4BmLYSZJmb6Cr4BI68VxXB; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=MYbnMkCjA79ZpV664BJUBjv/m2ZwwhNPTQZgyXUdpTZJWQtm9q0+7sNSfLIstSNn; slave_sid=RzMxMmo4NDJKZ0tTQ0tERmhXWENNSzhza2NKOEpyV2NUd0NwSGpKZ3ZGT2FNMnFaM082d0lfVVVFMkRNaGhWeTNXUnBaUzVlQ3ZJZ1BnM04yMlB5RDU1TjczU0RqT3B6WV8yd2ZiV0hOZHdFYnlHdU12Zkh3N1EzVWNaNXQzdFhjZHRQbkRDV3NmREZRYnhj; slave_user=gh_724a600181bc; xid=ea07dfed79acdc58d8412a3260f9faa4"
+token = "1374726058"
+fakeid = "MzAwMTMzNzM0NA==" #MzA5MjUwNzQxNw==
 """常需要修改"""
 
 # 目标url
@@ -138,12 +138,12 @@ def getMoreInfo(link, title):
     # req_id = "0614ymV0y86FlTVXB02AXd8p"
     """常需要修改"""
     # pass_ticket = "4KzFV%252BkaUHM%252BatRt91i%252FshNERUQyQ0EOwFbc9%252FOe4gv6RiV6%252FJ293IIDnggg1QzC"
-    pass_ticket = "DkbjRg%252F6aSmI7OysoWhlW%252BS48Sv13xvSExxHHmJtHn3YFZYl0vShHMJoFXJiAXGc"
+    pass_ticket = "5vfu8TXv9GdrT6DItvixu2UqF4C4cV1yb4Z%252BT09p3kPBnGjR90ImxPOsjeWBnTXB"
     # appmsg_token = "999_SVODv6i0%2FSNhK8CliOHzbKOydLO3IWXbnYfk2aiso-KkGL9w9a38IZlJCyOAXYyNJXdGn3zR5PTNWklR"
-    appmsg_token = "1062_McU6%2BZq%2FUuv4WqYwY_98cmdBgBNFhZTxwC_X7jSiG9Q1U_qzRHXs-GHiGi5VcqRb1ZAgG5Gahg6aiNam"
-    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=DkbjRg/6aSmI7OysoWhlW+S48Sv13xvSExxHHmJtHn3YFZYl0vShHMJoFXJiAXGc; wap_sid2=CP3Bkq0BElxnWU9JeVJqS1RiR1F1QlltU1ExRU9ySzB3QV9UNnpPRmlYa24zM0xYdlBTWjF1YWJfYTNNNDAxSUtxOXpmM2NfQ01VeFA2NndWdmxrU1NlMU0xdTJhU1lFQUFBfjDTyJP2BTgNQAE="
-    req_id = "2016Eb5wwB17bbI1Avh0lNp6"
-    key = "28a0bb6de44084e293bdeaea079977731005ea5a07659dea81b86750eb4e9d0a7f977ee0f0eb595dc53edf6868ea88555bb69d182196d0634d62b8bb116d3d556bfe12a5458aec6fa3a6987e9d26b87b"
+    appmsg_token = "1062_bLm0pA9KUwMfB0azWNvcEVorxmceQxDDZ4n_GcbAulavXuunjMu20vM6HeYSzoyie9Zxb0aiidciY_S8"
+    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=5vfu8TXv9GdrT6DItvixu2UqF4C4cV1yb4Z+T09p3kPBnGjR90ImxPOsjeWBnTXB; wap_sid2=CP3Bkq0BElx6LXVnbTVDellnSDN3ZkU5WUp5d3RpTHZxRzBIT0ZKMXhZa0pLbkFFc3kzVUdsazAzeEFKMDVyem4wNkJRTE9oWGFjRmVIS3hTNFcxR2RkY2JVcjloU1lFQUFBfjDk75f2BTgNQAE="
+    req_id = "2111rMdgbbUvdnMk28RFDCUm"
+    key = "caf03409094d441cf633355641d12d06356196bdfc41b8e638bc8c67aba46b0e656709aaaa51059217ad5513e4a1137bbdbf5ffc38726575aff5d1d82937921629cc7b3a3aee50fbf18f4f28e2a5d719"
     uin = "MzYzMTEwNjUz"
     """常需要修改"""
     # 目标url
@@ -315,8 +315,10 @@ def getMoreInfo(link, title):
 
 # 写入数据库
 def save_mysql(urlList):
+    urlListcount = len(urlList)
     print("------------------------save_------------------------")
-    for i in urlList:
+    for j in range(0,urlListcount):
+        i = urlList[j]
         # print(i)
         # try:
         conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
@@ -377,7 +379,7 @@ def save_mysql(urlList):
 
 
 if __name__ == '__main__':
-    for i in range(0, 349):
+    for i in range(0, 5):
         begin = i * 5
         print("第%s页" % i)
         messageAllInfo = getAllInfo(url, str(begin))
