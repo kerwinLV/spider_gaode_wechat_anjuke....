@@ -28,22 +28,26 @@ from tools.sqlconn import pool
 
 def parms_list():
     parms_list = []
-    for i in range(5,6):
-        url = "https://www.encollege.cn/gwapi/article/find"
-        parms = {
-            "programaId": i,
-            "page": 1,
-        }
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
-        }
-        resdata = requests.get(url, headers=headers, params=parms).json()
-        page = resdata["data"]["pageSize"]
-        for j in range(1,page+1):
-            parms = copy.deepcopy(parms)
-            parms["page"] = j
-            # print(parms)
-            parms_list.append(parms)
+    # for i in range(2, 6):
+    for i in range(21,44):
+        if i%5 != 0:
+            url = "https://www.encollege.cn/gwapi/article/find"
+            parms = {
+                "programaId": i,
+                "page": 1,
+            }
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
+            }
+            resdata = requests.get(url, headers=headers, params=parms).json()
+            page = resdata["data"]["pageSize"]
+            for j in range(1,page+1):
+                parms = copy.deepcopy(parms)
+                parms["page"] = j
+                # print(parms)
+                parms_list.append(parms)
+        else:
+            continue
     return parms_list
             # resdata1 = requests.get(url, headers=headers, params=parms).json()
 
@@ -74,6 +78,7 @@ def getDate(times):
 def get_res_and_save(parms_list):
     for i in parms_list:
         # print(i)
+        time.sleep(3)
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
         }
@@ -94,33 +99,41 @@ def get_res_and_save(parms_list):
             id = i["id"]
             # print(title)
             lujing = e.xpath("//img[@alt]/@src")
-            programaId = i["programaId"]
+            programaId = i["programaId"]  #programaId
             proParentID = i["proParentID"]
+            createdlocal = i["created"]
             created = int(time.mktime(time.strptime(i["created"], '%Y-%m-%d %H:%M:%S'))) * 1000
             for j in lujing:
                 print(j)
                 if "documents" in j:
+                    firstnum = re.findall("/documents/(\d+)/\d+",j)[0]
+                    secondnum = re.findall("/documents/\d+/(\d+)",j)[0]
                     print(j)
-
+                    if "t=" in j:
+                        tunix = j.split("t=")[1]
+                        tunixlocal =time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(int(int(tunix)/1000)))
+                    else:
+                        tunix=None
+                        tunixlocal = None
                     conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
                     cur = conn.cursor()
-                    SQL = 'insert into hjxx_home (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-                    cur.execute(SQL, (title, url,  id, programaId, created, proParentID, j,parentName1,proName2))
+                    SQL = 'insert into hjxx_home_copy1 (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2,firstnum,secondnum,timeunix,timeunixlocal,createdlocal) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+                    cur.execute(SQL, (title, url,  id, programaId, created, proParentID, j,parentName1,proName2,firstnum,secondnum,tunix,tunixlocal,createdlocal))
                     conn.commit()
                     print("写入成功")
                     cur.close()
                     conn.close()
-                elif "http://www.encollege.cn/imageFile/hjxx/" in j:
-                    res1 = requests.get(j,headers=headers)
-                    if res1.status_code !=200:
-                        conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
-                        cur = conn.cursor()
-                        SQL = 'insert into hjxx_home (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-                        cur.execute(SQL, (title, url, id, programaId, created, proParentID, j, parentName1, proName2))
-                        conn.commit()
-                        print("写入成功")
-                        cur.close()
-                        conn.close()
+                # elif "http://www.encollege.cn/imageFile/hjxx/" in j:
+                #     res1 = requests.get(j,headers=headers)
+                #     if res1.status_code !=200:
+                #         conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
+                #         cur = conn.cursor()
+                #         SQL = 'insert into hjxx_home (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+                #         cur.execute(SQL, (title, url, id, programaId, created, proParentID, j, parentName1, proName2))
+                #         conn.commit()
+                #         print("写入成功")
+                #         cur.close()
+                #         conn.close()
                 else:
                     continue
 

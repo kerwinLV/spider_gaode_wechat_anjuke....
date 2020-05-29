@@ -18,3 +18,23 @@ pool1 = PooledDB(pymysql, 10,
                 charset='utf8',
                 cursorclass = pymysql.cursors.DictCursor
 )
+
+pool_pudongaiofang = PooledDB(pymysql, 10,
+                 host='localhost',
+                 port=3306,
+                 user='root',
+                 passwd='123456',
+                 db='pudongaiofang',
+                 charset='utf8',
+                 cursorclass=pymysql.cursors.DictCursor
+)
+
+pool2 = PooledDB(pymysql, 10,
+                host='192.168.1.190',
+                port=3306,
+                user='dfw9006',
+                passwd='mysql570',
+                db='school_environment',
+                charset='utf8',
+                cursorclass = pymysql.cursors.DictCursor
+)

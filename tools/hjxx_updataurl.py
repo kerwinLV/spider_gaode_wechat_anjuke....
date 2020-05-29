@@ -7,7 +7,7 @@ from tools.sqlconn import pool
 
 # from test.test42 import url_list
 # {}一级/{}二级/{}名字/{}时间戳
-tupainlujing = "http://www.encollege.cn/imageFile/hjxx/{}/{}/{}/{}.jpg"
+tupainlujing = "https://www.encollege.cn/imageFile/hjxx/{}/{}/{}/{}.jpg"
 
 urllist = "https://www.encollege.cn/gwapi/article/find?&programaId=2&page=1"
 
@@ -27,22 +27,26 @@ urllist = "https://www.encollege.cn/gwapi/article/find?&programaId=2&page=1"
 
 def parms_list():
     parms_list = []
-    for i in range(2,5):
-        url = "https://www.encollege.cn/gwapi/article/find"
-        parms = {
-            "programaId": i,
-            "page": 1,
-        }
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
-        }
-        resdata = requests.get(url, headers=headers, params=parms).json()
-        page = resdata["data"]["pageSize"]
-        for j in range(1,page+1):
-            parms = copy.deepcopy(parms)
-            parms["page"] = j
-            # print(parms)
-            parms_list.append(parms)
+    # for i in range(2, 6):
+    for i in range(21, 44):
+        if i % 5 != 0:
+            url = "https://www.encollege.cn/gwapi/article/find"
+            parms = {
+                "programaId": i,
+                "page": 1,
+            }
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
+            }
+            resdata = requests.get(url, headers=headers, params=parms).json()
+            page = resdata["data"]["pageSize"]
+            for j in range(1,page+1):
+                parms = copy.deepcopy(parms)
+                parms["page"] = j
+                # print(parms)
+                parms_list.append(parms)
+        else:
+            continue
     return parms_list
 
 def getDate(times):
@@ -55,13 +59,13 @@ def getDate(times):
 # url = "https://www.encollege.cn/gwapi/article/find?total=23&programaId=24&page=1"
 def get_res_and_save(parms_list):
     url = "https://www.encollege.cn/gwapi/article/find"
-    for i in parms_list:
+    for pa in parms_list:
         # k = 0
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
         }
 
-        res = requests.get(url, headers=headers,params=i).json()
+        res = requests.get(url, headers=headers,params=pa).json()
         items = res["data"]["items"]
         for i in items:
             e = etree.HTML(str(i["context"]))
@@ -79,37 +83,54 @@ def get_res_and_save(parms_list):
             createdloacl = i["created"]
             created = int(time.mktime(time.strptime(createdloacl, '%Y-%m-%d %H:%M:%S'))) * 1000
             for j in lujing:
-                print(j)
+                print("startstartstartstart"+j)
                 if "documents" in j:
                     if "t=" in j:
                         print(j,id,i["title"])
                         # k = 1
                         t = j.split("t=")[1]
                         zuixinglujing = tupainlujing.format(parentName1, proName2, title, t)
+                        print("-------------------------zuixinglujing----------------------------")
                         print(zuixinglujing)
                         context = context.replace(j, zuixinglujing)
                     else:
-
-                        conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
-                        cur = conn.cursor()
-                        SQL = 'insert into hjxx_home_nounixtime (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2,createdloacl) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-                        cur.execute(SQL, (i["title"], url, id, programaId, created, proParentID, j, parentName1, proName2,createdloacl))
-                        conn.commit()
-                        print("写入成功")
-                        cur.close()
-                        conn.close()
+                        continue
+                        # conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
+                        # cur = conn.cursor()
+                        # SQL = 'insert into hjxx_home_nounixtime (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2,createdloacl) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+                        # cur.execute(SQL, (i["title"], url, id, programaId, created, proParentID, j, parentName1, proName2,createdloacl))
+                        # conn.commit()
+                        # print("写入成功")
+                        # cur.close()
+                        # conn.close()
+                # elif "www.encollege.cn" in j:
+                #     res400 = requests.get(j,headers=headers)
+                #     if res400.status_code !=200:
+                #         conn = pool.connection()  # 以后每次需要数据库连接就是用connection（）函数获取连接就好了
+                #         cur = conn.cursor()
+                #         SQL = 'insert into hjxx_home_nounixtime (title,url,id_id,programaId,created,proParentID,documentsurl,parentName1,proName2,createdloacl) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+                #         cur.execute(SQL, (
+                #         i["title"], url, id, programaId, created, proParentID, j, parentName1, proName2, createdloacl))
+                #         conn.commit()
+                #         print("400写入成功")
+                #         cur.close()
+                #         conn.close()
                 else:
                     continue
-            data1 = {
-                "id": id,
-                "context": context
-            }
-            import json
-            headers = {"Content-Type": "application/json"}
-            # https://www.encollege.cn/gwapi/article/find?programaId=36&temp=1
-            updateurl = "https://www.encollege.cn/gwapi/article/updateContent"
-            res5 = requests.post(updateurl, headers=headers, data=json.dumps(data1))
-            print(res5.text)
+            if context != i["context"]:
+                data1 = {
+                    "id": id,
+                    "context": context
+                }
+                # print()
+                import json
+                headers = {"Content-Type": "application/json"}
+                # https://www.encollege.cn/gwapi/article/find?programaId=36&temp=1
+                updateurl = "https://www.encollege.cn/gwapi/article/updateContent"
+                res5 = requests.post(updateurl, headers=headers, data=json.dumps(data1))
+                print(res5.text)
+            else:
+                continue
             # if k == 1:
             #     time.sleep(100)
 

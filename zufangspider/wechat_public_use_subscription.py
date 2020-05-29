@@ -5,7 +5,6 @@ from lxml import etree
 import random
 import re
 import json
-from pymongo import MongoClient
 import urllib3
 import pymysql
 from DBUtils.PooledDB import PooledDB
@@ -26,9 +25,9 @@ pool = PooledDB(pymysql, 10,
 # sheetName = "郑州市教工幼儿园"
 
 """常需要修改"""
-publicName = "绿色上海"  #蓝带LeCordonBleu
-Cookie = "noticeLoginFlag=1; pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; openid2ticket_oEsQHj1fpKrIcI9zGY1YXYPExUTk=HOVR8WGE6H1S2PcSSx+MCCrcoF1hy86fW47oMCM4Kbs=; pac_uid=1_ull; XWINDEXGREY=0; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=kZZ2HeJSL40xJa9Evv44wg12ZnVKB+P0fTSdyU1uzXc=; ptui_loginuin=2776971405; tvfe_boss_uuid=f6b4f9ad709069c4; pgv_si=s7183976448; _qpsvr_localtk=0.7061797776407348; rewardsn=; wxtokenkey=777; pgv_info=ssid=s4751006496; uuid=2eab5e6e5414920804a4aa22e20cf0a4; rand_info=CAESIJgOYlPYkAiVNSIRCLOXPu4BmLYSZJmb6Cr4BI68VxXB; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=MYbnMkCjA79ZpV664BJUBjv/m2ZwwhNPTQZgyXUdpTZJWQtm9q0+7sNSfLIstSNn; slave_sid=RzMxMmo4NDJKZ0tTQ0tERmhXWENNSzhza2NKOEpyV2NUd0NwSGpKZ3ZGT2FNMnFaM082d0lfVVVFMkRNaGhWeTNXUnBaUzVlQ3ZJZ1BnM04yMlB5RDU1TjczU0RqT3B6WV8yd2ZiV0hOZHdFYnlHdU12Zkh3N1EzVWNaNXQzdFhjZHRQbkRDV3NmREZRYnhj; slave_user=gh_724a600181bc; xid=ea07dfed79acdc58d8412a3260f9faa4"
-token = "1374726058"
+publicName = "绿色上海"  #蓝带LeCordonBleu 绿色上海
+Cookie = "pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; openid2ticket_oEsQHj1fpKrIcI9zGY1YXYPExUTk=HOVR8WGE6H1S2PcSSx+MCCrcoF1hy86fW47oMCM4Kbs=; XWINDEXGREY=0; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=kZZ2HeJSL40xJa9Evv44wg12ZnVKB+P0fTSdyU1uzXc=; ptui_loginuin=2776971405; tvfe_boss_uuid=f6b4f9ad709069c4; o_cookie=2509456238; pac_uid=1_2509456238; pgv_si=s4734450688; pgv_info=ssid=s4812414900; rewardsn=; wxtokenkey=777; uin=o2509456238; skey=@HggcM5YGR; uuid=a6424fa30cefae7ae94123b7530f3720; rand_info=CAESIOKvf1p3tO5DjJ11gvhBW+FXsJiHBpjRgTiTvndvE78Q; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=SEOPkMp8JY8b6sfKtI5NMSyeMmLcLscV3BBwpX2l+W8LT7r9Rkp/mdmXrJjs8D4G; slave_sid=ZTNYR010M2hqRWVJczg5enY1QVdIVGM1dmlCRkJZV1FKeGJYS2dHazJ5d2t3Nk1MTldjNGRnSjVsM1R6SjNSY2V5Vm16cndqazgySUQxU21WRkhBdFZWTm5ZdnE3OGdpOGQ2TGYydzc1ZU1KUnVVMkdOTGJvYXJnalZhTVY3THBuVHZPR3N3ZlhHeEM1NVQ0; slave_user=gh_724a600181bc; xid=99fb71450c5f5e3a093676c20370c557"
+token = "283345490"
 fakeid = "MzAwMTMzNzM0NA==" #MzA5MjUwNzQxNw==
 """常需要修改"""
 
@@ -42,7 +41,7 @@ url = "https://mp.weixin.qq.com/cgi-bin/appmsg"
 headers = {
     "Cookie": Cookie,
     "Host": "mp.weixin.qq.com",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36",
 }
 
 """
@@ -83,6 +82,7 @@ def getDate(times):
 
 # 最大值365，所以range中就应该是73,15表示前3页
 def getAllInfo(url, begin):
+    # print("kashkhhhkhkh")
     # 拿一页，存一页
     messageAllInfo = []
     # begin 从0开始，365结束
@@ -94,6 +94,7 @@ def getAllInfo(url, begin):
     # print("1----------------------------------------------")
     # print(content_json)
     # 返回了一个json，里面是每一页的数据
+    # print(content_json)
     if "app_msg_list" in content_json:
 
         for item in content_json["app_msg_list"]:
@@ -138,12 +139,12 @@ def getMoreInfo(link, title):
     # req_id = "0614ymV0y86FlTVXB02AXd8p"
     """常需要修改"""
     # pass_ticket = "4KzFV%252BkaUHM%252BatRt91i%252FshNERUQyQ0EOwFbc9%252FOe4gv6RiV6%252FJ293IIDnggg1QzC"
-    pass_ticket = "5vfu8TXv9GdrT6DItvixu2UqF4C4cV1yb4Z%252BT09p3kPBnGjR90ImxPOsjeWBnTXB"
+    pass_ticket = "fQQ6olYx2Ak1z37wkk2Di53j5OvW3XGIOeLQFRcft2a2lrpJbe9WspmoXvgzesI%252F"
     # appmsg_token = "999_SVODv6i0%2FSNhK8CliOHzbKOydLO3IWXbnYfk2aiso-KkGL9w9a38IZlJCyOAXYyNJXdGn3zR5PTNWklR"
-    appmsg_token = "1062_bLm0pA9KUwMfB0azWNvcEVorxmceQxDDZ4n_GcbAulavXuunjMu20vM6HeYSzoyie9Zxb0aiidciY_S8"
-    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=5vfu8TXv9GdrT6DItvixu2UqF4C4cV1yb4Z+T09p3kPBnGjR90ImxPOsjeWBnTXB; wap_sid2=CP3Bkq0BElx6LXVnbTVDellnSDN3ZkU5WUp5d3RpTHZxRzBIT0ZKMXhZa0pLbkFFc3kzVUdsazAzeEFKMDVyem4wNkJRTE9oWGFjRmVIS3hTNFcxR2RkY2JVcjloU1lFQUFBfjDk75f2BTgNQAE="
-    req_id = "2111rMdgbbUvdnMk28RFDCUm"
-    key = "caf03409094d441cf633355641d12d06356196bdfc41b8e638bc8c67aba46b0e656709aaaa51059217ad5513e4a1137bbdbf5ffc38726575aff5d1d82937921629cc7b3a3aee50fbf18f4f28e2a5d719"
+    appmsg_token = "1063_ByO8MPaHvvwMNH%2B7lfbvi2pgGGphv2fbEIA5TzUGVUSXuaDWYi1lXt0W8CL2YhSSjQQsAMS_RoQdRaPA"
+    phoneCookie = "rewardsn=; wxtokenkey=777; wxuin=363110653; devicetype=Windows10x64; version=62090072; lang=zh_CN; pass_ticket=fQQ6olYx2Ak1z37wkk2Di53j5OvW3XGIOeLQFRcft2a2lrpJbe9WspmoXvgzesI/; wap_sid2=CP3Bkq0BElwzQUgwS1NpVjdTVFRqSkpLR1NkVUNvUzliVFl6bDF4VFg2d3FCR3dlR2hlMzhsS2hibkMzXzFmRUtTU2xpeVlrbjNETTNKRzlma3JoalNlVmNLM3cteWNFQUFBfjCBw8H2BTgNQAE="
+    req_id = "2909WyN5CYl9yz7VxOqVpnC0"
+    key = "2c85d7f27a9b1aff19b5d2bd5f0c1a8b3d0ab69af5cbace0cd235f5ee69ca7c5f0cd46ffebc4772dc0634239194cb7710e7af44797651cb739dacea3bb74dab099ad6d4362df85ecae65c7c72deb8e8d"
     uin = "MzYzMTEwNjUz"
     """常需要修改"""
     # 目标url
@@ -379,7 +380,7 @@ def save_mysql(urlList):
 
 
 if __name__ == '__main__':
-    for i in range(0, 5):
+    for i in range(0, 8):
         begin = i * 5
         print("第%s页" % i)
         messageAllInfo = getAllInfo(url, str(begin))
