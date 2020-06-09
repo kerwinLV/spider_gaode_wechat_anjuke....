@@ -9,7 +9,8 @@ from tools.sqlconn import pool_pudongaiofang
 def get_jcj_ajxx_info():
     conn = pool_pudongaiofang.connection()
     cur = conn.cursor()
-    sql = 'SELECT ja.ID as caseId,ja.AFDZ as address,ja.lasj as startTime,ja.ZYQK as description,rscr.word as word from jcj_ajxx ja LEFT JOIN rule_semantic_case_result rscr on ja.ID = rscr.caseId where  rscr.wordId=203 and rscr.ruleId=1500'
+    # sql = 'SELECT ja.ID as caseId,ja.AFDZ as address,ja.lasj as startTime,ja.ZYQK as description,rscr.word as word from jcj_ajxx ja LEFT JOIN rule_semantic_case_result rscr on ja.ID = rscr.caseId where  rscr.wordId=203 and rscr.ruleId=1500'
+    sql = 'SELECT * FROM jcj_ajxx limit 2000,10000 '
     cur.execute(sql)
     info = cur.fetchall()
     return info
@@ -52,7 +53,7 @@ def save_participle(par_info_item,par_info_text):
     if pos != "w":
         conn = pool_pudongaiofang.connection()
         cur = conn.cursor()
-        sql = 'insert into participle (text,loc_details,uri,pos,ne,item,basic_words,byte_length,formal,item_index) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        sql = 'insert into participle_copy1 (text,loc_details,uri,pos,ne,item,basic_words,byte_length,formal,item_index) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         cur.execute(sql,(text,loc_details,uri,pos,ne,item,basic_words,byte_length,formal,item_index))
         conn.commit()
         print("插入成功")
@@ -63,12 +64,15 @@ def save_participle(par_info_item,par_info_text):
 info = get_jcj_ajxx_info()
 access_token = get_access_token()
 for i in info:
+    # print(i["id"])
     # print(i["ZYQK"])
-    if i["description"] !=None:
-        par_info = get_participle_info(i["description"],access_token)
+    if i["ZYQK"]:
+        print(i["ZYQK"])
+    # if i["description"] !=None:
+        par_info = get_participle_info(i["ZYQK"],access_token)
         randomtime = random.randint(1,3)
         time.sleep(randomtime)
-        print(par_info)
+        # print(par_info)
         par_info_text = par_info["text"]
         par_info_items = par_info["items"]
         for i in par_info_items:
