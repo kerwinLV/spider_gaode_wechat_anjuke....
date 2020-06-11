@@ -10,7 +10,7 @@ def get_jcj_ajxx_info():
     conn = pool_pudongaiofang.connection()
     cur = conn.cursor()
     # sql = 'SELECT ja.ID as caseId,ja.AFDZ as address,ja.lasj as startTime,ja.ZYQK as description,rscr.word as word from jcj_ajxx ja LEFT JOIN rule_semantic_case_result rscr on ja.ID = rscr.caseId where  rscr.wordId=203 and rscr.ruleId=1500'
-    sql = 'SELECT * FROM jcj_ajxx limit 2000,10000 '
+    sql = 'SELECT * FROM jcj_ajxx_copy1 where id_id>38887'
     cur.execute(sql)
     info = cur.fetchall()
     return info
@@ -68,6 +68,7 @@ for i in info:
     # print(i["ZYQK"])
     if i["ZYQK"]:
         print(i["ZYQK"])
+        print(i["id_id"])
     # if i["description"] !=None:
         par_info = get_participle_info(i["ZYQK"],access_token)
         randomtime = random.randint(1,3)

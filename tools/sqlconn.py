@@ -56,3 +56,12 @@ minghangsystempool = PooledDB(pymysql, 10,
                 charset='utf8',
                 cursorclass = pymysql.cursors.DictCursor
 )
+pudongsystembpool = PooledDB(pymysql, 10,
+                host='192.168.1.190',
+                port=3306,
+                user='dfw9006',
+                passwd='mysql570',
+                db='pudongsystem_b',
+                charset='utf8',
+                cursorclass = pymysql.cursors.DictCursor
+)
