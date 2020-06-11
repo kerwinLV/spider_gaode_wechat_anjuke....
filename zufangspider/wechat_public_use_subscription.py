@@ -25,10 +25,10 @@ pool = PooledDB(pymysql, 10,
 # sheetName = "郑州市教工幼儿园"
 
 """常需要修改"""
-publicName = "绿色上海"  #蓝带LeCordonBleu 绿色上海
-Cookie = "pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; openid2ticket_oEsQHj1fpKrIcI9zGY1YXYPExUTk=HOVR8WGE6H1S2PcSSx+MCCrcoF1hy86fW47oMCM4Kbs=; XWINDEXGREY=0; ptui_loginuin=2776971405; tvfe_boss_uuid=f6b4f9ad709069c4; o_cookie=2509456238; pac_uid=1_2509456238; pgv_si=s8805086208; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=FjrV5BQeOD4ehyKR89sR7AY53rqb1LxWnA4u0V5fKxg=; uin=o2509456238; skey=@ox2hb98Pl; rewardsn=; wxtokenkey=777; uuid=cbbafb9026351c1c69bfe085f66a8a99; rand_info=CAESIKO4t/0mijv0INqMzIfNQklKq2bvwGp6QWli3U5xz6yG; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=IR6oNSFRCCGdoqm/SgJ5pT1cMZ/3CkwHQtGESszCjT2eOO5f9qOLt3fqzqU11kcA; slave_sid=OTZlcG1uQlZWOWg0cUNPSmhLazREQXdfNFhuS0w2aVVLTTlFWjRpZ2NwVmljemhGbGNuYXdUOHpPd0Nmc0h4RzdvampDd3lMamZuazRTTUxUTUNtaU9RRmlfR05aaGlnYzBTX2lJZmlNS2tzVTZHTVdralBTQktMNkM0S1o3MmFyaWpCNzRjckN6VG9Rc0ll; slave_user=gh_724a600181bc; xid=49ffa9fc49bfa68280106314259f0cc8"
-token = "2044027266"
-fakeid = "MzAwMTMzNzM0NA==" #MzA5MjUwNzQxNw==
+publicName = "蓝带LeCordonBleu"  #蓝带LeCordonBleu 绿色上海
+Cookie = "pgv_pvid=7256621674; pgv_pvi=5590167552; RK=RSqBVIDS96; ptcz=febb259247b2456cc3884c97bde35ebc5d7a917efd2725129180d5002839c0b5; ua_id=WJh9AWtKKFr1RXtiAAAAAA6vPufRh-Dhv6aYtSdPOWU=; noticeLoginFlag=1; mm_lang=zh_CN; XWINDEXGREY=0; ptui_loginuin=2776971405; tvfe_boss_uuid=f6b4f9ad709069c4; o_cookie=2509456238; pac_uid=1_2509456238; pgv_si=s8805086208; openid2ticket_oMAvowaj5UMMMPSnqii2UWlfUY34=FjrV5BQeOD4ehyKR89sR7AY53rqb1LxWnA4u0V5fKxg=; uin=o2509456238; rewardsn=; wxtokenkey=777; skey=@ZIoL7u03N; uuid=00a1e351943d1c3f0b4737348d36b0ba; rand_info=CAESIEz6tryjXkwUx7FFP8gjrT9GzxLhULUTPJcCwNrEEfnM; slave_bizuin=3253209904; data_bizuin=3253209904; bizuin=3253209904; data_ticket=26pnK1iLPw9K8AvCTfJtq3PHSajsD79JMS7ZdgXGAhRpDjxVJsrdXXrDmuSYylih; slave_sid=dGY1Y21CcGpIWHhXdVlSeHhGREhub2REeUFTa3Z3Wjl3MUpocTBJWmlvOVdzRVFFYUFxcExTWnRkUXl1aU8xTkxuQUFUOTB1SHRiQTNfWk9mTHNmNTk3eGQxZFMwU0hQWWNTaV9XUlc5S3Y3dTkzR0RsaDliRFlPb1o2aExnOGh6QVZJQTFPMEFFaG02cG5E; slave_user=gh_724a600181bc; xid=41746e04235291d1ce1fd335cf13eaca"
+token = "1086420028"
+fakeid = "MzA5MjUwNzQxNw==" #MzA5MjUwNzQxNw==
 """常需要修改"""
 
 # 目标url

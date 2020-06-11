@@ -10,7 +10,7 @@ def get_jcj_ajxx_info():
     conn = pool_pudongaiofang.connection()
     cur = conn.cursor()
     # sql = 'SELECT ja.ID as caseId,ja.AFDZ as address,ja.lasj as startTime,ja.ZYQK as description,rscr.word as word from jcj_ajxx ja LEFT JOIN rule_semantic_case_result rscr on ja.ID = rscr.caseId where  rscr.wordId=203 and rscr.ruleId=1500'
-    sql = 'SELECT * FROM jcj_ajxx_copy1 where id_id>38887'
+    sql = 'SELECT * FROM jcj_ajxx_copy1 where id_id>44266'
     cur.execute(sql)
     info = cur.fetchall()
     return info

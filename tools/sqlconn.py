@@ -65,3 +65,13 @@ pudongsystembpool = PooledDB(pymysql, 10,
                 charset='utf8',
                 cursorclass = pymysql.cursors.DictCursor
 )
+
+shanghaiyingjipool = PooledDB(pymysql, 10,
+                host='localhost',
+                port=3306,
+                user='root',
+                passwd='123456',
+                db='fire',
+                charset="utf8mb4",
+                cursorclass = pymysql.cursors.DictCursor
+)
