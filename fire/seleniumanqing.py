@@ -11,7 +11,9 @@ from lxml import etree
 from zhon.hanzi import punctuation
 # from requests.cookies import RequestsCookieJar
 import requests
-from tools.sqlconn import shanghaiyingjipool
+from tools.sqlconn import get_shanghaiyingjipool
+
+
 
 class COOKIE(object):
     url = 'https://passport.weibo.cn/signin/login?entry=mweibo&r=https%3A%2F%2Fweibo.cn%2F&backTitle=%CE%A2%B2%A9&vt='
@@ -91,14 +93,20 @@ def get_msnage(cookiestr,url1):
 
 
 def save_sql(text,img,nikename,wherefrom,t_time):
-    conn = shanghaiyingjipool.connection()
+    conn = get_shanghaiyingjipool().connection()
     cur = conn.cursor()
-    sql = 'insert into anqing_xiaofang_a (context,nikename,wherefrom,release_time,storage_time) values (%s,%s,%s,%s,%s)'
-    cur.execute(sql,(text,img,nikename,wherefrom,t_time))
-    conn.commit()
+    sql = 'select * from anqing_xiaofang_a where context=%s'
+    cur.execute(sql, (text))
+    data1 = cur.fetchone()
+    if not data1:
+        sql = 'insert into anqing_xiaofang_a (context,nikename,wherefrom,release_time,storage_time) values (%s,%s,%s,%s,%s)'
+        cur.execute(sql, (text, img, nikename, wherefrom, t_time))
+        conn.commit()
+        print("写入成功")
+    else:
+        print("buxieru")
     cur.close()
     conn.close()
-    print("写入成功")
 
 if __name__=="__main__":
     co = COOKIE()
@@ -106,7 +114,7 @@ if __name__=="__main__":
     cookiestr = co.getcookie()
 
     url1 = "https://weibo.cn/search/mblog?hideSearchFrame=&keyword=%E7%81%AB%E7%81%BE&advancedfilter=1&nick=%E5%A4%AE%E8%A7%86%E6%96%B0%E9%97%BB&endtime=20200616&sort=time&page={}"
-    for i in range(6,90):
+    for i in range(1,90):
         print(i)
         url2 = url1.format(i)
         print(url2)
